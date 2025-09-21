@@ -1,0 +1,2956 @@
+{smcl}
+{com}{sf}{ul off}{txt}{.-}
+      name:  {res}<unnamed>
+       {txt}log:  {res}Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\2025-4141-闫里鹏.smcl
+  {txt}log type:  {res}smcl
+ {txt}opened on:  {res}28 Aug 2025, 11:01:39
+{txt}
+{com}.     *do 01-图1图2图3.do
+.     do 02-表3图4.do
+{txt}
+{com}. 
+.  
+. 
+. ************************************************************************
+. * 四 利率冲击对劳动收入的异质性影响
+. *（一）基准回归结果 表3 
+. ************************************************************************ 
+.     use $Data\cfps_LABOREco.dta,clear  
+{txt}
+{com}.     xtset idind year  
+{res}
+{col 1}{txt:Panel variable: }{res:idind}{txt: (unbalanced)}
+{p 1 16 2}{txt:Time variable: }{res:year}{txt:, }{res:{bind:2012}}{txt: to }{res:{bind:2020}}{txt:, but with gaps}{p_end}
+{txt}{col 10}Delta: {res}1 unit
+{txt}
+{com}.     *平均效应-增速
+.     reghdfe g_inc_wag MP , absorb(pctile)  cluster(prov) 
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}   1{txt},{res}     25{txt}){col 67}= {res}    289.93
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.0872
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.0866
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0223
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    0.6947
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}   g_inc_wag{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}MP {c |}{col 14}{res}{space 2}-.1696887{col 26}{space 2} .0099656{col 37}{space 1}  -17.03{col 46}{space 3}0.000{col 54}{space 4}-.1902133{col 67}{space 3}-.1491641
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .3202519{col 26}{space 2} .0189139{col 37}{space 1}   16.93{col 46}{space 3}0.000{col 54}{space 4}  .281298{col 67}{space 3} .3592057
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     est store a1 
+{txt}
+{com}.     *最低40%-增速
+.     gen is_b40 = (pctile >=0 & pctile<= 4) 
+{txt}
+{com}.     reghdfe g_inc_wag i.is_b40#c.MP , absorb(pctile) cluster(prov) 
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}   2{txt},{res}     25{txt}){col 67}= {res}    124.59
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.0918
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.0911
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0272
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    0.6930
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}   g_inc_wag{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}is_b40#c.MP {c |}
+{space 10}0  {c |}{col 14}{res}{space 2}-.1088413{col 26}{space 2}  .009625{col 37}{space 1}  -11.31{col 46}{space 3}0.000{col 54}{space 4}-.1286643{col 67}{space 3}-.0890183
+{txt}{space 10}1  {c |}{col 14}{res}{space 2}-.2730958{col 26}{space 2} .0201078{col 37}{space 1}  -13.58{col 46}{space 3}0.000{col 54}{space 4}-.3145086{col 67}{space 3}-.2316831
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .3200123{col 26}{space 2} .0167409{col 37}{space 1}   19.12{col 46}{space 3}0.000{col 54}{space 4} .2855337{col 67}{space 3} .3544909
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     est store a2 
+{txt}
+{com}.     *最高20%-增速
+.     gen is_u20 = (pctile >=8 & pctile<= 10) 
+{txt}
+{com}.     reghdfe g_inc_wag i.is_u20#c.MP , absorb(pctile) cluster(prov)  
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}   2{txt},{res}     25{txt}){col 67}= {res}    133.58
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.0877
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.0870
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0228
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    0.6946
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}   g_inc_wag{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}is_u20#c.MP {c |}
+{space 10}0  {c |}{col 14}{res}{space 2}-.1863836{col 26}{space 2} .0136913{col 37}{space 1}  -13.61{col 46}{space 3}0.000{col 54}{space 4}-.2145814{col 67}{space 3}-.1581859
+{txt}{space 10}1  {c |}{col 14}{res}{space 2}-.1317423{col 26}{space 2} .0116586{col 37}{space 1}  -11.30{col 46}{space 3}0.000{col 54}{space 4}-.1557536{col 67}{space 3}-.1077311
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .3202523{col 26}{space 2} .0181324{col 37}{space 1}   17.66{col 46}{space 3}0.000{col 54}{space 4} .2829078{col 67}{space 3} .3575967
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     est store a3  
+{txt}
+{com}.     *平均效应-%标准化增长 
+.     reghdfe g_inc_wag_sd   MP , absorb( pctile)  cluster( prov ) 
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}   1{txt},{res}     25{txt}){col 67}= {res}     41.50
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.0712
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.0706
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0196
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    7.6085
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}g_inc_wag_sd{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}MP {c |}{col 14}{res}{space 2}-1.737672{col 26}{space 2} .2697378{col 37}{space 1}   -6.44{col 46}{space 3}0.000{col 54}{space 4}-2.293208{col 67}{space 3}-1.182137
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.0220561{col 26}{space 2} .0934924{col 37}{space 1}   -0.24{col 46}{space 3}0.815{col 54}{space 4}-.2146074{col 67}{space 3} .1704951
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     est store b1 
+{txt}
+{com}.     *最低40%-%标准化增长 
+.     reghdfe g_inc_wag_sd i.is_b40#c.MP , absorb(pctile) cluster( prov ) 
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}   2{txt},{res}     25{txt}){col 67}= {res}     91.42
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.1009
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.1003
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0509
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    7.4861
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}g_inc_wag_sd{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}is_b40#c.MP {c |}
+{space 10}0  {c |}{col 14}{res}{space 2}-.0508778{col 26}{space 2}  .005608{col 37}{space 1}   -9.07{col 46}{space 3}0.000{col 54}{space 4}-.0624276{col 67}{space 3} -.039328
+{txt}{space 10}1  {c |}{col 14}{res}{space 2}-4.604295{col 26}{space 2} .7036423{col 37}{space 1}   -6.54{col 46}{space 3}0.000{col 54}{space 4}-6.053473{col 67}{space 3}-3.155116
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-.0286976{col 26}{space 2} .0308214{col 37}{space 1}   -0.93{col 46}{space 3}0.361{col 54}{space 4}-.0921756{col 67}{space 3} .0347803
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     est store b2 
+{txt}
+{com}.     *最高20%-%标准化增长 
+.     reghdfe g_inc_wag_sd i.is_u20#c.MP , absorb(pctile) cluster( prov)    
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}   2{txt},{res}     25{txt}){col 67}= {res}     45.20
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.0790
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.0783
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0278
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    7.5770
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}g_inc_wag_sd{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}is_u20#c.MP {c |}
+{space 10}0  {c |}{col 14}{res}{space 2}-2.482178{col 26}{space 2} .3654895{col 37}{space 1}   -6.79{col 46}{space 3}0.000{col 54}{space 4}-3.234918{col 67}{space 3}-1.729438
+{txt}{space 10}1  {c |}{col 14}{res}{space 2}-.0454616{col 26}{space 2} .0076623{col 37}{space 1}   -5.93{col 46}{space 3}0.000{col 54}{space 4}-.0612424{col 67}{space 3}-.0296808
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2}-.0220393{col 26}{space 2} .0571371{col 37}{space 1}   -0.39{col 46}{space 3}0.703{col 54}{space 4}-.1397153{col 67}{space 3} .0956368
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     est store b3 
+{txt}
+{com}.   
+. 
+.   esttab a1 b1 a2 b2 a3 b3   ,   ///  
+>       mtitle( all_g all_gst  low40_g low40_gst up20_g up20_gst )    ///  
+>        b(%9.3f) se(%9.3f)  r2 ar2 star(* 0.1 ** 0.05 *** 0.01) replace 
+{res}
+{txt}{hline 108}
+{txt}                      (1)             (2)             (3)             (4)             (5)             (6)   
+{txt}                    all_g         all_gst         low40_g       low40_gst          up20_g        up20_gst   
+{txt}{hline 108}
+{txt}MP          {res}       -0.170***       -1.738***                                                                {txt}
+            {res} {ralign 12:{txt:(}0.010{txt:)}}    {ralign 12:{txt:(}0.270{txt:)}}                                                                   {txt}
+
+{txt}0.is_b40#c~P{res}                                       -0.109***       -0.051***                                {txt}
+            {res}                                 {ralign 12:{txt:(}0.010{txt:)}}    {ralign 12:{txt:(}0.006{txt:)}}                                   {txt}
+
+{txt}1.is_b40#c~P{res}                                       -0.273***       -4.604***                                {txt}
+            {res}                                 {ralign 12:{txt:(}0.020{txt:)}}    {ralign 12:{txt:(}0.704{txt:)}}                                   {txt}
+
+{txt}0.is_u20#c~P{res}                                                                       -0.186***       -2.482***{txt}
+            {res}                                                                 {ralign 12:{txt:(}0.014{txt:)}}    {ralign 12:{txt:(}0.365{txt:)}}   {txt}
+
+{txt}1.is_u20#c~P{res}                                                                       -0.132***       -0.045***{txt}
+            {res}                                                                 {ralign 12:{txt:(}0.012{txt:)}}    {ralign 12:{txt:(}0.008{txt:)}}   {txt}
+
+{txt}_cons       {res}        0.320***       -0.022           0.320***       -0.029           0.320***       -0.022   {txt}
+            {res} {ralign 12:{txt:(}0.019{txt:)}}    {ralign 12:{txt:(}0.093{txt:)}}    {ralign 12:{txt:(}0.017{txt:)}}    {ralign 12:{txt:(}0.031{txt:)}}    {ralign 12:{txt:(}0.018{txt:)}}    {ralign 12:{txt:(}0.057{txt:)}}   {txt}
+{txt}{hline 108}
+{txt}N           {res}        15980           15980           15980           15980           15980           15980   {txt}
+{txt}R-sq        {res}        0.087           0.071           0.092           0.101           0.088           0.079   {txt}
+{txt}adj. R-sq   {res}        0.087           0.071           0.091           0.100           0.087           0.078   {txt}
+{txt}{hline 108}
+{txt}Standard errors in parentheses
+{txt}* p<0.1, ** p<0.05, *** p<0.01
+
+{com}.   
+. 
+.   cd "$Logout"
+{res}Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Logout
+{txt}
+{com}.   esttab a1 b1 a2 b2 a3 b3   using "表3.csv"  ,   ///  
+>       mtitle(all_g all_gst  low40_g low40_gst up20_g up20_gst )    ///  
+>        b(%9.3f) se(%9.3f)  r2 ar2 star(* 0.1 ** 0.05 *** 0.01) replace 
+{res}{txt}(output written to {browse  `"表3.csv"'})
+
+{com}.  
+. 
+. ************************************************************************
+. * 四 利率冲击对劳动收入的异质性影响
+. *（一）基准回归结果 图4 
+. ************************************************************************ 
+.     xtset idind year
+{res}
+{col 1}{txt:Panel variable: }{res:idind}{txt: (unbalanced)}
+{p 1 16 2}{txt:Time variable: }{res:year}{txt:, }{res:{bind:2012}}{txt: to }{res:{bind:2020}}{txt:, but with gaps}{p_end}
+{txt}{col 10}Delta: {res}1 unit
+{txt}
+{com}.     reghdfe g_inc_wag i.pctile#c.MP , absorb(pctile) cluster(prov )   
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}  10{txt},{res}     25{txt}){col 67}= {res}    105.41
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.0961
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.0950
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0319
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    0.6915
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}   g_inc_wag{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}pctile#c.MP {c |}
+{space 9} 1  {c |}{col 14}{res}{space 2}-.0977349{col 26}{space 2} .0233948{col 37}{space 1}   -4.18{col 46}{space 3}0.000{col 54}{space 4}-.1459174{col 67}{space 3}-.0495524
+{txt}{space 9} 2  {c |}{col 14}{res}{space 2}-.3537747{col 26}{space 2} .0217736{col 37}{space 1}  -16.25{col 46}{space 3}0.000{col 54}{space 4}-.3986182{col 67}{space 3}-.3089311
+{txt}{space 9} 3  {c |}{col 14}{res}{space 2}-.3907063{col 26}{space 2} .0303187{col 37}{space 1}  -12.89{col 46}{space 3}0.000{col 54}{space 4}-.4531488{col 67}{space 3}-.3282638
+{txt}{space 9} 4  {c |}{col 14}{res}{space 2}-.1460153{col 26}{space 2} .0361214{col 37}{space 1}   -4.04{col 46}{space 3}0.000{col 54}{space 4}-.2204086{col 67}{space 3} -.071622
+{txt}{space 9} 5  {c |}{col 14}{res}{space 2}-.0831573{col 26}{space 2}  .024547{col 37}{space 1}   -3.39{col 46}{space 3}0.002{col 54}{space 4}-.1337128{col 67}{space 3}-.0326017
+{txt}{space 9} 6  {c |}{col 14}{res}{space 2}-.0848247{col 26}{space 2} .0259893{col 37}{space 1}   -3.26{col 46}{space 3}0.003{col 54}{space 4}-.1383506{col 67}{space 3}-.0312987
+{txt}{space 9} 7  {c |}{col 14}{res}{space 2}-.0925904{col 26}{space 2} .0142244{col 37}{space 1}   -6.51{col 46}{space 3}0.000{col 54}{space 4} -.121886{col 67}{space 3}-.0632948
+{txt}{space 9} 8  {c |}{col 14}{res}{space 2}-.0855116{col 26}{space 2} .0247803{col 37}{space 1}   -3.45{col 46}{space 3}0.002{col 54}{space 4}-.1365476{col 67}{space 3}-.0344757
+{txt}{space 9} 9  {c |}{col 14}{res}{space 2}-.1379387{col 26}{space 2} .0177389{col 37}{space 1}   -7.78{col 46}{space 3}0.000{col 54}{space 4}-.1744728{col 67}{space 3}-.1014047
+{txt}{space 9}10  {c |}{col 14}{res}{space 2}-.1618506{col 26}{space 2} .0236518{col 37}{space 1}   -6.84{col 46}{space 3}0.000{col 54}{space 4}-.2105624{col 67}{space 3}-.1131388
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .3209523{col 26}{space 2}    .0171{col 37}{space 1}   18.77{col 46}{space 3}0.000{col 54}{space 4} .2857342{col 67}{space 3} .3561705
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.  
+.      // 提取估计系数  
+.     qui matrix b = e(b)   
+{txt}
+{com}.     // 提取协方差矩阵  
+.     qui matrix V = e(V)   
+{txt}
+{com}.     qui matrix se = V  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.     qui matrix se = diag(se)  
+{txt}
+{com}.     qui matrix se = cholesky(se)  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.  
+. 
+.     qui matrix se = se' 
+{txt}
+{com}.     mat list se
+{res}
+{txt}se[11,1]
+                r1
+1b.pctile#
+   c.MP {res}  .0233948
+{txt}2.pctile#
+   c.MP {res} .02177358
+{txt}3.pctile#
+   c.MP {res}  .0303187
+{txt}4.pctile#
+   c.MP {res} .03612136
+{txt}5.pctile#
+   c.MP {res} .02454703
+{txt}6.pctile#
+   c.MP {res}  .0259893
+{txt}7.pctile#
+   c.MP {res} .01422436
+{txt}8.pctile#
+   c.MP {res} .02478029
+{txt}9.pctile#
+   c.MP {res} .01773893
+{txt}10.pctile#
+   c.MP {res}  .0236518
+{txt}  _cons {res} .01710003
+{reset}
+{com}.     qui matrix b = b' 
+{txt}
+{com}.     mat list b
+{res}
+{txt}b[11,1]
+                 y1
+1b.pctile#
+   c.MP {res} -.09773487
+{txt}2.pctile#
+   c.MP {res} -.35377467
+{txt}3.pctile#
+   c.MP {res}  -.3907063
+{txt}4.pctile#
+   c.MP {res} -.14601531
+{txt}5.pctile#
+   c.MP {res} -.08315729
+{txt}6.pctile#
+   c.MP {res} -.08482466
+{txt}7.pctile#
+   c.MP {res} -.09259041
+{txt}8.pctile#
+   c.MP {res} -.08551164
+{txt}9.pctile#
+   c.MP {res} -.13793875
+{txt}10.pctile#
+   c.MP {res} -.16185063
+{txt}  _cons {res}  .32095234
+{reset}
+{com}.     mat A = (b,se)
+{txt}
+{com}.     preserve 
+{txt}
+{com}.         clear 
+{txt}
+{com}.         svmat A 
+{txt}number of observations will be reset to 11
+Press any key to continue, or Break to abort
+{p}
+Number of observations ({bf:_N}) was 0,
+now 11.
+{p_end}
+
+{com}.         rename A1 beta
+{res}{txt}
+{com}.         rename A2 se
+{res}{txt}
+{com}. 
+.         local z = 2.56
+{txt}
+{com}.         gen lower = beta + (-`z') * se  
+{txt}
+{com}.         gen upper = beta + `z' * se  
+{txt}
+{com}.         gen qtile = _n * 10
+{txt}
+{com}.         drop if qtile >100
+{txt}(1 observation deleted)
+
+{com}.   
+.         twoway (line  lower qtile ,lc(gray) lp("-") lw(*0.8))  ///   
+>                (line  beta qtile ,lc(blcak) lp("l") lw(*1.5))  ///   
+>                (line  upper qtile ,lc(gray) lp("-") lw(*0.8))  , ///   
+>                 yline(0, lw(*0.5) lp("l") lc(gray) )   ///  
+>                xlabel( 10(20)100              ,labsize(*1) nogrid tposition(inside) )  /// 
+>                ylabel( -0.5 "-0.5" -0.25 "-0.25" 0 "0" 0.25 "0.25" 0.5 "0.5" ,labsize(*1) nogrid tposition(inside) )  /// 
+>                 title(`"{c -(}fontface "宋体":降低利率对工资性收入增速的影响{c )-}"')    ///  
+>                 ytitle("")  xtitle(`"{c -(}fontface "宋体":收入分位点{c )-}"')     legend(off)  
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}. 
+.  
+.         graph save    $Plot\plot1_wag.gph ,replace 
+{txt}{p 0 4 2}
+(file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\plot1_wag.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\plot1_wag.gph} saved
+
+{com}.         *graph export  $Plot\plot1_wag.png ,replace  
+.     restore  
+{txt}
+{com}.  
+.     * 财产收入
+.     reghdfe g_inc_wealth_p i.pctile#c.MP , absorb(pctile) cluster(prov)   
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}     2,509
+{txt}Absorbing 1 HDFE group{col 51}F({res}  10{txt},{res}     24{txt}){col 67}= {res}      5.34
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0004
+{txt}{col 51}R-squared{col 67}= {res}    0.0089
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.0013
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0058
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        25{txt}{col 51}Root MSE{col 67}= {res}    3.3375
+
+{txt}{ralign 78:(Std. err. adjusted for {res:25} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}g_inc_weal~p{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}pctile#c.MP {c |}
+{space 9} 1  {c |}{col 14}{res}{space 2}  .365206{col 26}{space 2} .7826436{col 37}{space 1}    0.47{col 46}{space 3}0.645{col 54}{space 4}-1.250091{col 67}{space 3} 1.980503
+{txt}{space 9} 2  {c |}{col 14}{res}{space 2} .2510122{col 26}{space 2} .3458059{col 37}{space 1}    0.73{col 46}{space 3}0.475{col 54}{space 4}-.4626961{col 67}{space 3} .9647206
+{txt}{space 9} 3  {c |}{col 14}{res}{space 2}  .104471{col 26}{space 2} .3943786{col 37}{space 1}    0.26{col 46}{space 3}0.793{col 54}{space 4}-.7094864{col 67}{space 3} .9184283
+{txt}{space 9} 4  {c |}{col 14}{res}{space 2}-.3833138{col 26}{space 2} .2125235{col 37}{space 1}   -1.80{col 46}{space 3}0.084{col 54}{space 4}-.8219409{col 67}{space 3} .0553132
+{txt}{space 9} 5  {c |}{col 14}{res}{space 2}-.9033526{col 26}{space 2} .6363472{col 37}{space 1}   -1.42{col 46}{space 3}0.169{col 54}{space 4}-2.216709{col 67}{space 3} .4100036
+{txt}{space 9} 6  {c |}{col 14}{res}{space 2} -.261407{col 26}{space 2} .0914847{col 37}{space 1}   -2.86{col 46}{space 3}0.009{col 54}{space 4}-.4502221{col 67}{space 3}-.0725918
+{txt}{space 9} 7  {c |}{col 14}{res}{space 2}-.3786303{col 26}{space 2} .2580414{col 37}{space 1}   -1.47{col 46}{space 3}0.155{col 54}{space 4}-.9112017{col 67}{space 3} .1539411
+{txt}{space 9} 8  {c |}{col 14}{res}{space 2}-.6686474{col 26}{space 2} .2783539{col 37}{space 1}   -2.40{col 46}{space 3}0.024{col 54}{space 4}-1.243142{col 67}{space 3}-.0941532
+{txt}{space 9} 9  {c |}{col 14}{res}{space 2}-.1135798{col 26}{space 2} .0902404{col 37}{space 1}   -1.26{col 46}{space 3}0.220{col 54}{space 4}-.2998268{col 67}{space 3} .0726672
+{txt}{space 9}10  {c |}{col 14}{res}{space 2}-.2429935{col 26}{space 2} .4709353{col 37}{space 1}   -0.52{col 46}{space 3}0.611{col 54}{space 4}-1.214956{col 67}{space 3} .7289691
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .4664761{col 26}{space 2} .1366711{col 37}{space 1}    3.41{col 46}{space 3}0.002{col 54}{space 4} .1844008{col 67}{space 3} .7485515
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     // 提取估计系数  
+.     qui matrix b = e(b)   
+{txt}
+{com}.     // 提取协方差矩阵  
+.     qui matrix V = e(V)   
+{txt}
+{com}.     qui matrix se = V  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.     qui matrix se = diag(se)  
+{txt}
+{com}.     qui matrix se = cholesky(se)  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.  
+. 
+.     qui matrix se = se' 
+{txt}
+{com}.     mat list se
+{res}
+{txt}se[11,1]
+                r1
+1b.pctile#
+   c.MP {res} .78264357
+{txt}2.pctile#
+   c.MP {res} .34580594
+{txt}3.pctile#
+   c.MP {res} .39437856
+{txt}4.pctile#
+   c.MP {res} .21252355
+{txt}5.pctile#
+   c.MP {res} .63634723
+{txt}6.pctile#
+   c.MP {res} .09148471
+{txt}7.pctile#
+   c.MP {res} .25804145
+{txt}8.pctile#
+   c.MP {res} .27835387
+{txt}9.pctile#
+   c.MP {res} .09024038
+{txt}10.pctile#
+   c.MP {res} .47093528
+{txt}  _cons {res} .13667114
+{reset}
+{com}.     qui matrix b = b' 
+{txt}
+{com}.     mat list b
+{res}
+{txt}b[11,1]
+                 y1
+1b.pctile#
+   c.MP {res}  .36520601
+{txt}2.pctile#
+   c.MP {res}  .25101224
+{txt}3.pctile#
+   c.MP {res}  .10447098
+{txt}4.pctile#
+   c.MP {res} -.38331382
+{txt}5.pctile#
+   c.MP {res} -.90335256
+{txt}6.pctile#
+   c.MP {res} -.26140699
+{txt}7.pctile#
+   c.MP {res}  -.3786303
+{txt}8.pctile#
+   c.MP {res}  -.6686474
+{txt}9.pctile#
+   c.MP {res}  -.1135798
+{txt}10.pctile#
+   c.MP {res} -.24299352
+{txt}  _cons {res}  .46647615
+{reset}
+{com}.     mat A = (b,se)
+{txt}
+{com}.     preserve 
+{txt}
+{com}.         clear 
+{txt}
+{com}.         svmat A 
+{txt}number of observations will be reset to 11
+Press any key to continue, or Break to abort
+{p}
+Number of observations ({bf:_N}) was 0,
+now 11.
+{p_end}
+
+{com}.         rename A1 beta
+{res}{txt}
+{com}.         rename A2 se
+{res}{txt}
+{com}. 
+.         local z = 2.56
+{txt}
+{com}.         gen lower = beta + (-`z') * se  
+{txt}
+{com}.         gen upper = beta + `z' * se  
+{txt}
+{com}.         gen qtile = _n * 10
+{txt}
+{com}.         drop if qtile >100
+{txt}(1 observation deleted)
+
+{com}. 
+.         twoway (line  lower qtile ,lc(gray) lp("-") lw(*0.8))  ///   
+>                (line  beta qtile ,lc(blcak) lp("l") lw(*1.5))  ///   
+>                (line  upper qtile ,lc(gray) lp("-") lw(*0.8))  , ///   
+>                 yline(0, lw(*0.5) lp("l") lc(gray) )   ///  
+>                xlabel( 10(20)100   ,labsize(*1) nogrid tposition(inside)   )  /// 
+>                ylabel(     ,labsize(*1) nogrid tposition(inside)  )  /// 
+>                 title(`"{c -(}fontface "宋体":降低利率对财产收入增速的影响{c )-}"')    ///  
+>                 ytitle("")  xtitle(`"{c -(}fontface "宋体":收入分位点{c )-}"')     legend(off) 
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}. 
+. 
+.         graph save    $Plot\plot2_hincwealth.gph ,replace 
+{txt}{p 0 4 2}
+(file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\plot2_hincwealth.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\plot2_hincwealth.gph} saved
+
+{com}.         *graph export  $Plot\plot2_hincwealth.png ,replace 
+.     restore  
+{txt}
+{com}.   
+.     * 经营收入   
+.     reghdfe g_inc_oper_p i.pctile#c.MP , absorb(pctile)     
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}     3,580
+{txt}Absorbing 1 HDFE group{col 51}F({res}  10{txt},{res}   3560{txt}){col 67}= {res}      1.59
+{txt}{col 51}Prob > F{col 67}= {res}    0.1036
+{txt}{col 51}R-squared{col 67}= {res}    0.0069
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.0016
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0044
+{txt}{col 51}Root MSE{col 67}= {res}   43.5798
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}g_inc_oper_p{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}pctile#c.MP {c |}
+{space 9} 1  {c |}{col 14}{res}{space 2}  5.28356{col 26}{space 2} 3.743713{col 37}{space 1}    1.41{col 46}{space 3}0.158{col 54}{space 4}-2.056479{col 67}{space 3}  12.6236
+{txt}{space 9} 2  {c |}{col 14}{res}{space 2}-1.544595{col 26}{space 2} 4.047655{col 37}{space 1}   -0.38{col 46}{space 3}0.703{col 54}{space 4}-9.480552{col 67}{space 3} 6.391361
+{txt}{space 9} 3  {c |}{col 14}{res}{space 2}-.0904729{col 26}{space 2} 4.011741{col 37}{space 1}   -0.02{col 46}{space 3}0.982{col 54}{space 4}-7.956016{col 67}{space 3}  7.77507
+{txt}{space 9} 4  {c |}{col 14}{res}{space 2} .1160594{col 26}{space 2} 3.211683{col 37}{space 1}    0.04{col 46}{space 3}0.971{col 54}{space 4}-6.180864{col 67}{space 3} 6.412983
+{txt}{space 9} 5  {c |}{col 14}{res}{space 2} .2183382{col 26}{space 2} 3.056391{col 37}{space 1}    0.07{col 46}{space 3}0.943{col 54}{space 4}-5.774116{col 67}{space 3} 6.210793
+{txt}{space 9} 6  {c |}{col 14}{res}{space 2}-3.183847{col 26}{space 2} 4.588735{col 37}{space 1}   -0.69{col 46}{space 3}0.488{col 54}{space 4}-12.18066{col 67}{space 3} 5.812967
+{txt}{space 9} 7  {c |}{col 14}{res}{space 2} .1964811{col 26}{space 2} 3.166546{col 37}{space 1}    0.06{col 46}{space 3}0.951{col 54}{space 4}-6.011947{col 67}{space 3} 6.404909
+{txt}{space 9} 8  {c |}{col 14}{res}{space 2} .4120264{col 26}{space 2} 4.408527{col 37}{space 1}    0.09{col 46}{space 3}0.926{col 54}{space 4}-8.231467{col 67}{space 3}  9.05552
+{txt}{space 9} 9  {c |}{col 14}{res}{space 2} 13.46976{col 26}{space 2} 3.701755{col 37}{space 1}    3.64{col 46}{space 3}0.000{col 54}{space 4} 6.211982{col 67}{space 3} 20.72753
+{txt}{space 9}10  {c |}{col 14}{res}{space 2}-.2253388{col 26}{space 2} 4.544455{col 37}{space 1}   -0.05{col 46}{space 3}0.960{col 54}{space 4}-9.135336{col 67}{space 3} 8.684659
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .8185604{col 26}{space 2} .9004943{col 37}{space 1}    0.91{col 46}{space 3}0.363{col 54}{space 4}-.9469763{col 67}{space 3} 2.584097
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     // 提取估计系数  
+.     qui matrix b = e(b)   
+{txt}
+{com}.     // 提取协方差矩阵  
+.     qui matrix V = e(V)   
+{txt}
+{com}.     qui matrix se = V  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.     qui matrix se = diag(se)  
+{txt}
+{com}.     qui matrix se = cholesky(se)  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}. 
+.     qui matrix se = se' 
+{txt}
+{com}.     mat list se
+{res}
+{txt}se[11,1]
+                r1
+1b.pctile#
+   c.MP {res} 3.7437133
+{txt}2.pctile#
+   c.MP {res} 4.0476552
+{txt}3.pctile#
+   c.MP {res} 4.0117414
+{txt}4.pctile#
+   c.MP {res} 3.2116829
+{txt}5.pctile#
+   c.MP {res} 3.0563913
+{txt}6.pctile#
+   c.MP {res} 4.5887345
+{txt}7.pctile#
+   c.MP {res} 3.1665465
+{txt}8.pctile#
+   c.MP {res} 4.4085275
+{txt}9.pctile#
+   c.MP {res} 3.7017554
+{txt}10.pctile#
+   c.MP {res} 4.5444551
+{txt}  _cons {res} .90049433
+{reset}
+{com}.     qui matrix b = b' 
+{txt}
+{com}.     mat list b
+{res}
+{txt}b[11,1]
+                 y1
+1b.pctile#
+   c.MP {res}  5.2835595
+{txt}2.pctile#
+   c.MP {res} -1.5445952
+{txt}3.pctile#
+   c.MP {res} -.09047295
+{txt}4.pctile#
+   c.MP {res}  .11605936
+{txt}5.pctile#
+   c.MP {res}   .2183382
+{txt}6.pctile#
+   c.MP {res} -3.1838465
+{txt}7.pctile#
+   c.MP {res}  .19648115
+{txt}8.pctile#
+   c.MP {res}  .41202642
+{txt}9.pctile#
+   c.MP {res}  13.469756
+{txt}10.pctile#
+   c.MP {res} -.22533879
+{txt}  _cons {res}  .81856039
+{reset}
+{com}.     mat A = (b,se)
+{txt}
+{com}.     preserve 
+{txt}
+{com}.         clear 
+{txt}
+{com}.         svmat A 
+{txt}number of observations will be reset to 11
+Press any key to continue, or Break to abort
+{p}
+Number of observations ({bf:_N}) was 0,
+now 11.
+{p_end}
+
+{com}.         rename A1 beta
+{res}{txt}
+{com}.         rename A2 se
+{res}{txt}
+{com}. 
+.         local z = 2.56
+{txt}
+{com}.         gen lower = beta + (-`z') * se  
+{txt}
+{com}.         gen upper = beta + `z' * se  
+{txt}
+{com}.         gen qtile = _n * 10
+{txt}
+{com}.         drop if qtile >100 
+{txt}(1 observation deleted)
+
+{com}. 
+.         twoway (line  lower qtile ,lc(gray) lp("-") lw(*0.8))  ///   
+>                (line  beta qtile ,lc(blcak) lp("l") lw(*1.5))  ///   
+>                (line  upper qtile ,lc(gray) lp("-") lw(*0.8))  , ///   
+>                 yline(0, lw(*0.5) lp("l") lc(gray) )   ///  
+>                xlabel( 10(20)100   ,labsize(*1) nogrid tposition(inside)  )  /// 
+>                ylabel(           ,labsize(*1)  nogrid tposition(inside) )  /// 
+>                 title(`"{c -(}fontface "宋体":降低利率对经营收入增速的影响{c )-}"')    ///  
+>                 ytitle("")  xtitle(`"{c -(}fontface "宋体":收入分位点{c )-}"')     legend(off)  
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}.         graph save    $Plot\plot3_hincoper.gph ,replace 
+{txt}{p 0 4 2}
+(file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\plot3_hincoper.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\plot3_hincoper.gph} saved
+
+{com}.         *graph export  $Plot\plot3_hincoper.png ,replace  
+.     restore  
+{txt}
+{com}.  
+.    
+.     *5. 转移收入   
+.     reghdfe g_inc_trans_p i.pctile#c.MP , absorb(pctile)  
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}     7,339
+{txt}Absorbing 1 HDFE group{col 51}F({res}  10{txt},{res}   7319{txt}){col 67}= {res}      0.27
+{txt}{col 51}Prob > F{col 67}= {res}    0.9880
+{txt}{col 51}R-squared{col 67}= {res}    0.0016
+{txt}{col 51}Adj R-squared{col 67}= {res}   -0.0009
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0004
+{txt}{col 51}Root MSE{col 67}= {res}  210.8267
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}g_inc_tran~p{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}pctile#c.MP {c |}
+{space 9} 1  {c |}{col 14}{res}{space 2} 3.206969{col 26}{space 2} 15.98423{col 37}{space 1}    0.20{col 46}{space 3}0.841{col 54}{space 4}-28.12674{col 67}{space 3} 34.54067
+{txt}{space 9} 2  {c |}{col 14}{res}{space 2} 1.208399{col 26}{space 2} 10.50461{col 37}{space 1}    0.12{col 46}{space 3}0.908{col 54}{space 4}-19.38366{col 67}{space 3} 21.80046
+{txt}{space 9} 3  {c |}{col 14}{res}{space 2} .8145088{col 26}{space 2} 10.46526{col 37}{space 1}    0.08{col 46}{space 3}0.938{col 54}{space 4}-19.70042{col 67}{space 3} 21.32943
+{txt}{space 9} 4  {c |}{col 14}{res}{space 2} .3530212{col 26}{space 2} 12.22384{col 37}{space 1}    0.03{col 46}{space 3}0.977{col 54}{space 4}-23.60923{col 67}{space 3} 24.31527
+{txt}{space 9} 5  {c |}{col 14}{res}{space 2} 10.32572{col 26}{space 2} 11.43765{col 37}{space 1}    0.90{col 46}{space 3}0.367{col 54}{space 4}-12.09538{col 67}{space 3} 32.74681
+{txt}{space 9} 6  {c |}{col 14}{res}{space 2}-15.37631{col 26}{space 2}  14.4935{col 37}{space 1}   -1.06{col 46}{space 3}0.289{col 54}{space 4}-43.78776{col 67}{space 3} 13.03513
+{txt}{space 9} 7  {c |}{col 14}{res}{space 2} 5.291322{col 26}{space 2} 11.33035{col 37}{space 1}    0.47{col 46}{space 3}0.641{col 54}{space 4}-16.91943{col 67}{space 3} 27.50207
+{txt}{space 9} 8  {c |}{col 14}{res}{space 2} 6.041881{col 26}{space 2} 15.00239{col 37}{space 1}    0.40{col 46}{space 3}0.687{col 54}{space 4}-23.36712{col 67}{space 3} 35.45088
+{txt}{space 9} 9  {c |}{col 14}{res}{space 2} 3.789837{col 26}{space 2} 12.44962{col 37}{space 1}    0.30{col 46}{space 3}0.761{col 54}{space 4}  -20.615{col 67}{space 3} 28.19468
+{txt}{space 9}10  {c |}{col 14}{res}{space 2}  6.19162{col 26}{space 2} 13.79433{col 37}{space 1}    0.45{col 46}{space 3}0.654{col 54}{space 4}-20.84923{col 67}{space 3} 33.23247
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} 4.768945{col 26}{space 2}  3.22304{col 37}{space 1}    1.48{col 46}{space 3}0.139{col 54}{space 4}-1.549141{col 67}{space 3} 11.08703
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.   
+.     // 提取估计系数  
+.     qui matrix b = e(b)   
+{txt}
+{com}.     // 提取协方差矩阵  
+.     qui matrix V = e(V)   
+{txt}
+{com}.     qui matrix se = V  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.     qui matrix se = diag(se)  
+{txt}
+{com}.     qui matrix se = cholesky(se)  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.  
+.     qui matrix se = se' 
+{txt}
+{com}.     mat list se
+{res}
+{txt}se[11,1]
+                r1
+1b.pctile#
+   c.MP {res} 15.984235
+{txt}2.pctile#
+   c.MP {res}  10.50461
+{txt}3.pctile#
+   c.MP {res} 10.465259
+{txt}4.pctile#
+   c.MP {res} 12.223841
+{txt}5.pctile#
+   c.MP {res} 11.437653
+{txt}6.pctile#
+   c.MP {res} 14.493505
+{txt}7.pctile#
+   c.MP {res} 11.330349
+{txt}8.pctile#
+   c.MP {res} 15.002386
+{txt}9.pctile#
+   c.MP {res} 12.449619
+{txt}10.pctile#
+   c.MP {res} 13.794325
+{txt}  _cons {res} 3.2230398
+{reset}
+{com}.     qui matrix b = b' 
+{txt}
+{com}.     mat list b
+{res}
+{txt}b[11,1]
+                 y1
+1b.pctile#
+   c.MP {res}  3.2069686
+{txt}2.pctile#
+   c.MP {res}  1.2083995
+{txt}3.pctile#
+   c.MP {res}  .81450876
+{txt}4.pctile#
+   c.MP {res}  .35302123
+{txt}5.pctile#
+   c.MP {res}  10.325717
+{txt}6.pctile#
+   c.MP {res} -15.376313
+{txt}7.pctile#
+   c.MP {res}  5.2913219
+{txt}8.pctile#
+   c.MP {res}  6.0418809
+{txt}9.pctile#
+   c.MP {res}  3.7898373
+{txt}10.pctile#
+   c.MP {res}  6.1916197
+{txt}  _cons {res}  4.7689455
+{reset}
+{com}.     mat A = (b,se)
+{txt}
+{com}.     preserve 
+{txt}
+{com}.         clear 
+{txt}
+{com}.         svmat A 
+{txt}number of observations will be reset to 11
+Press any key to continue, or Break to abort
+{p}
+Number of observations ({bf:_N}) was 0,
+now 11.
+{p_end}
+
+{com}.         rename A1 beta
+{res}{txt}
+{com}.         rename A2 se
+{res}{txt}
+{com}. 
+.         local z = 2.56
+{txt}
+{com}.         gen lower = beta + (-`z') * se  
+{txt}
+{com}.         gen upper = beta + `z' * se  
+{txt}
+{com}.         gen qtile = _n * 10
+{txt}
+{com}.         drop if qtile >100
+{txt}(1 observation deleted)
+
+{com}. 
+.         replace lower = -lower
+{txt}(10 real changes made)
+
+{com}.         replace upper = -upper
+{txt}(10 real changes made)
+
+{com}.         replace beta = -beta
+{txt}(10 real changes made)
+
+{com}. 
+.         twoway (line  lower qtile ,lc(gray) lp("-") lw(*0.8))  ///   
+>                (line  beta qtile ,lc(blcak) lp("l") lw(*1.5))  ///   
+>                (line  upper qtile ,lc(gray) lp("-") lw(*0.8))  , ///   
+>                 yline(0, lw(*0.5) lp("l") lc(gray) )   ///  
+>                xlabel( 10(20)100   ,labsize(*1) nogrid tposition(inside)   )  /// 
+>                ylabel(   ,labsize(*1) nogrid tposition(inside)  )  /// 
+>                 title(`"{c -(}fontface "宋体":降低利率对转移收入增速的影响{c )-}"')    ///  
+>                 ytitle("")  xtitle(`"{c -(}fontface "宋体":收入分位点{c )-}"')     legend(off)   
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}.         graph save    $Plot\plot4_hintrans.gph ,replace 
+{txt}{p 0 4 2}
+(file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\plot4_hintrans.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\plot4_hintrans.gph} saved
+
+{com}.         *graph export  $Plot\plot4_hintrans.png ,replace  
+. 
+.     restore    
+{txt}
+{com}.     
+.     cd  ${c -(}Plot{c )-} 
+{res}Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot
+{txt}
+{com}. 
+.     graph combine   plot1_wag.gph       plot2_hincwealth.gph ///  
+>                     plot3_hincoper.gph  plot4_hintrans.gph  ,col(2)  
+{res}{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{res}{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{res}{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{res}{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}.     graph save     图4.gph ,replace 
+{res}{txt}file {bf:图4.gph} saved
+
+{com}.     graph export   图4.png ,replace 
+{txt}{p 0 4 2}
+file {bf}
+图4.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+.     erase   plot1_wag.gph
+{txt}
+{com}.     erase   plot2_hincwealth.gph
+{txt}
+{com}.     erase   plot3_hincoper.gph
+{txt}
+{com}.     erase   plot4_hintrans.gph
+{txt}
+{com}. ********************************************************************************************************************************************* 
+.     cd  $MainPath 
+{res}Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案
+{txt}
+{com}. 
+.  
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+{txt}end of do-file
+
+{com}.     do 03-表4图5表5图6.do
+{txt}
+{com}.  
+.     use $Data\cfps_LABOREco.dta,clear  
+{txt}
+{com}.     xtset idind year  
+{res}
+{col 1}{txt:Panel variable: }{res:idind}{txt: (unbalanced)}
+{p 1 16 2}{txt:Time variable: }{res:year}{txt:, }{res:{bind:2012}}{txt: to }{res:{bind:2020}}{txt:, but with gaps}{p_end}
+{txt}{col 10}Delta: {res}1 unit
+{txt}
+{com}.  
+. ************************************************************************
+. * 四 利率冲击对劳动收入的异质性影响
+. *（二）稳健性分析 表4 
+. ************************************************************************ 
+.  
+.     *平均效应-增速 
+.     reghdfe g_inc_wag   MP age eduy gender  , absorb( pctile  )  cluster( prov ) 
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}   4{txt},{res}     25{txt}){col 67}= {res}    270.60
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.1107
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.1100
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0475
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    0.6858
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}   g_inc_wag{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}MP {c |}{col 14}{res}{space 2}-.1549207{col 26}{space 2} .0094801{col 37}{space 1}  -16.34{col 46}{space 3}0.000{col 54}{space 4}-.1744453{col 67}{space 3}-.1353961
+{txt}{space 9}age {c |}{col 14}{res}{space 2} -.008796{col 26}{space 2} .0006438{col 37}{space 1}  -13.66{col 46}{space 3}0.000{col 54}{space 4}-.0101219{col 67}{space 3}-.0074701
+{txt}{space 8}eduy {c |}{col 14}{res}{space 2}-.0184512{col 26}{space 2} .0013485{col 37}{space 1}  -13.68{col 46}{space 3}0.000{col 54}{space 4}-.0212284{col 67}{space 3}-.0156739
+{txt}{space 6}gender {c |}{col 14}{res}{space 2}-.0632328{col 26}{space 2} .0122695{col 37}{space 1}   -5.15{col 46}{space 3}0.000{col 54}{space 4}-.0885024{col 67}{space 3}-.0379632
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}  .912044{col 26}{space 2} .0363989{col 37}{space 1}   25.06{col 46}{space 3}0.000{col 54}{space 4}  .837079{col 67}{space 3} .9870089
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     est store a1 
+{txt}
+{com}.     reghdfe g_inc_wag   MP  i.year  , absorb( pctile  )  cluster( prov ) 
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}{txt}note: 2020.year omitted because of collinearity
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}   4{txt},{res}     25{txt}){col 67}= {res}    259.48
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.0993
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.0986
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0353
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    0.6902
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}   g_inc_wag{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}MP {c |}{col 14}{res}{space 2}-.7821627{col 26}{space 2} .0605689{col 37}{space 1}  -12.91{col 46}{space 3}0.000{col 54}{space 4}-.9069067{col 67}{space 3}-.6574188
+{txt}{space 12} {c |}
+{space 8}year {c |}
+{space 7}2014  {c |}{col 14}{res}{space 2} .8807445{col 26}{space 2} .0846209{col 37}{space 1}   10.41{col 46}{space 3}0.000{col 54}{space 4} .7064644{col 67}{space 3} 1.055024
+{txt}{space 7}2016  {c |}{col 14}{res}{space 2}  .051877{col 26}{space 2} .0375132{col 37}{space 1}    1.38{col 46}{space 3}0.179{col 54}{space 4}-.0253829{col 67}{space 3}  .129137
+{txt}{space 7}2018  {c |}{col 14}{res}{space 2} .5571426{col 26}{space 2} .0425597{col 37}{space 1}   13.09{col 46}{space 3}0.000{col 54}{space 4} .4694892{col 67}{space 3} .6447961
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .2596986{col 26}{space 2} .0204037{col 37}{space 1}   12.73{col 46}{space 3}0.000{col 54}{space 4} .2176765{col 67}{space 3} .3017208
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     est store a2  
+{txt}
+{com}.     *最低40%-增速
+.     gen is_b40 = (pctile >=0 & pctile<= 4)  
+{txt}
+{com}.     reghdfe g_inc_wag i.is_b40#c.MP  age eduy gender ,absorb(pctile) cluster( prov ) 
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}   5{txt},{res}     25{txt}){col 67}= {res}    258.67
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.1130
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.1122
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0499
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    0.6849
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}   g_inc_wag{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}is_b40#c.MP {c |}
+{space 10}0  {c |}{col 14}{res}{space 2}-.1125847{col 26}{space 2} .0096204{col 37}{space 1}  -11.70{col 46}{space 3}0.000{col 54}{space 4}-.1323982{col 67}{space 3}-.0927713
+{txt}{space 10}1  {c |}{col 14}{res}{space 2}-.2291397{col 26}{space 2} .0178559{col 37}{space 1}  -12.83{col 46}{space 3}0.000{col 54}{space 4}-.2659145{col 67}{space 3}-.1923648
+{txt}{space 12} {c |}
+{space 9}age {c |}{col 14}{res}{space 2}-.0083231{col 26}{space 2} .0006704{col 37}{space 1}  -12.41{col 46}{space 3}0.000{col 54}{space 4}-.0097038{col 67}{space 3}-.0069423
+{txt}{space 8}eduy {c |}{col 14}{res}{space 2}-.0178351{col 26}{space 2} .0013933{col 37}{space 1}  -12.80{col 46}{space 3}0.000{col 54}{space 4}-.0207046{col 67}{space 3}-.0149655
+{txt}{space 6}gender {c |}{col 14}{res}{space 2}-.0649076{col 26}{space 2} .0121878{col 37}{space 1}   -5.33{col 46}{space 3}0.000{col 54}{space 4}-.0900089{col 67}{space 3}-.0398064
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .8868461{col 26}{space 2} .0387919{col 37}{space 1}   22.86{col 46}{space 3}0.000{col 54}{space 4} .8069526{col 67}{space 3} .9667395
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     est store b1 
+{txt}
+{com}.     reghdfe g_inc_wag i.is_b40#c.MP i.year  , absorb(pctile) cluster( prov ) 
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}{txt}note: 2020.year omitted because of collinearity
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}   5{txt},{res}     25{txt}){col 67}= {res}    234.39
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.1038
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.1030
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0401
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    0.6885
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}   g_inc_wag{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}is_b40#c.MP {c |}
+{space 10}0  {c |}{col 14}{res}{space 2} -.717774{col 26}{space 2} .0576023{col 37}{space 1}  -12.46{col 46}{space 3}0.000{col 54}{space 4}-.8364081{col 67}{space 3}-.5991399
+{txt}{space 10}1  {c |}{col 14}{res}{space 2}-.8812808{col 26}{space 2} .0565196{col 37}{space 1}  -15.59{col 46}{space 3}0.000{col 54}{space 4}-.9976851{col 67}{space 3}-.7648764
+{txt}{space 12} {c |}
+{space 8}year {c |}
+{space 7}2014  {c |}{col 14}{res}{space 2} .8750435{col 26}{space 2} .0786236{col 37}{space 1}   11.13{col 46}{space 3}0.000{col 54}{space 4} .7131153{col 67}{space 3} 1.036972
+{txt}{space 7}2016  {c |}{col 14}{res}{space 2} .0517334{col 26}{space 2} .0378159{col 37}{space 1}    1.37{col 46}{space 3}0.183{col 54}{space 4}-.0261498{col 67}{space 3} .1296167
+{txt}{space 7}2018  {c |}{col 14}{res}{space 2} .5557592{col 26}{space 2} .0413319{col 37}{space 1}   13.45{col 46}{space 3}0.000{col 54}{space 4} .4706346{col 67}{space 3} .6408838
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .2596129{col 26}{space 2} .0183657{col 37}{space 1}   14.14{col 46}{space 3}0.000{col 54}{space 4} .2217881{col 67}{space 3} .2974378
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     est store b2 
+{txt}
+{com}.     *最高20%-增速
+.     gen is_u20 = (pctile >=8 & pctile<= 10)  
+{txt}
+{com}.     reghdfe g_inc_wag i.is_u20#c.MP   age eduy gender  ,  absorb(pctile) cluster( prov)  
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}   5{txt},{res}     25{txt}){col 67}= {res}    226.72
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.1108
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.1101
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0476
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    0.6858
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}   g_inc_wag{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}is_u20#c.MP {c |}
+{space 10}0  {c |}{col 14}{res}{space 2}-.1635078{col 26}{space 2} .0128016{col 37}{space 1}  -12.77{col 46}{space 3}0.000{col 54}{space 4}-.1898731{col 67}{space 3}-.1371425
+{txt}{space 10}1  {c |}{col 14}{res}{space 2}-.1357877{col 26}{space 2} .0120802{col 37}{space 1}  -11.24{col 46}{space 3}0.000{col 54}{space 4}-.1606674{col 67}{space 3} -.110908
+{txt}{space 12} {c |}
+{space 9}age {c |}{col 14}{res}{space 2}-.0087309{col 26}{space 2}  .000654{col 37}{space 1}  -13.35{col 46}{space 3}0.000{col 54}{space 4}-.0100778{col 67}{space 3}-.0073841
+{txt}{space 8}eduy {c |}{col 14}{res}{space 2}-.0184005{col 26}{space 2} .0013595{col 37}{space 1}  -13.53{col 46}{space 3}0.000{col 54}{space 4}-.0212004{col 67}{space 3}-.0156006
+{txt}{space 6}gender {c |}{col 14}{res}{space 2}-.0637845{col 26}{space 2} .0122089{col 37}{space 1}   -5.22{col 46}{space 3}0.000{col 54}{space 4}-.0889293{col 67}{space 3}-.0386398
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .9091387{col 26}{space 2} .0371835{col 37}{space 1}   24.45{col 46}{space 3}0.000{col 54}{space 4} .8325577{col 67}{space 3} .9857196
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     est store c1 
+{txt}
+{com}.     reghdfe g_inc_wag i.is_u20#c.MP  i.year  ,  absorb(pctile) cluster( prov)  
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}{txt}note: 2020.year omitted because of collinearity
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}   5{txt},{res}     25{txt}){col 67}= {res}    238.67
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.0997
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.0989
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0358
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    0.6900
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}   g_inc_wag{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}is_u20#c.MP {c |}
+{space 10}0  {c |}{col 14}{res}{space 2}-.7986298{col 26}{space 2} .0589527{col 37}{space 1}  -13.55{col 46}{space 3}0.000{col 54}{space 4}-.9200451{col 67}{space 3}-.6772145
+{txt}{space 10}1  {c |}{col 14}{res}{space 2}-.7447818{col 26}{space 2} .0618814{col 37}{space 1}  -12.04{col 46}{space 3}0.000{col 54}{space 4}-.8722289{col 67}{space 3}-.6173347
+{txt}{space 12} {c |}
+{space 8}year {c |}
+{space 7}2014  {c |}{col 14}{res}{space 2} .8807539{col 26}{space 2}   .08343{col 37}{space 1}   10.56{col 46}{space 3}0.000{col 54}{space 4} .7089266{col 67}{space 3} 1.052581
+{txt}{space 7}2016  {c |}{col 14}{res}{space 2} .0517106{col 26}{space 2}  .037662{col 37}{space 1}    1.37{col 46}{space 3}0.182{col 54}{space 4}-.0258557{col 67}{space 3} .1292769
+{txt}{space 7}2018  {c |}{col 14}{res}{space 2} .5569688{col 26}{space 2} .0423414{col 37}{space 1}   13.15{col 46}{space 3}0.000{col 54}{space 4}  .469765{col 67}{space 3} .6441726
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .2597394{col 26}{space 2} .0196488{col 37}{space 1}   13.22{col 46}{space 3}0.000{col 54}{space 4} .2192719{col 67}{space 3} .3002069
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.     est store c2 
+{txt}
+{com}.  
+.   esttab  a1 a2   b1 b2   c1 c2    ,   ///  
+>       mtitle(  mg_ctrl mg_yfe   lowg_ctrl lowg_yfe   upg_ctrl upg_yfe  )    ///  
+>        b(%9.3f) se(%9.3f)  r2 ar2 star(* 0.1 ** 0.05 *** 0.01) replace  
+{res}
+{txt}{hline 108}
+{txt}                      (1)             (2)             (3)             (4)             (5)             (6)   
+{txt}                  mg_ctrl          mg_yfe       lowg_ctrl        lowg_yfe        upg_ctrl         upg_yfe   
+{txt}{hline 108}
+{txt}MP          {res}       -0.155***       -0.782***                                                                {txt}
+            {res} {ralign 12:{txt:(}0.009{txt:)}}    {ralign 12:{txt:(}0.061{txt:)}}                                                                   {txt}
+
+{txt}age         {res}       -0.009***                       -0.008***                       -0.009***                {txt}
+            {res} {ralign 12:{txt:(}0.001{txt:)}}                    {ralign 12:{txt:(}0.001{txt:)}}                    {ralign 12:{txt:(}0.001{txt:)}}                   {txt}
+
+{txt}eduy        {res}       -0.018***                       -0.018***                       -0.018***                {txt}
+            {res} {ralign 12:{txt:(}0.001{txt:)}}                    {ralign 12:{txt:(}0.001{txt:)}}                    {ralign 12:{txt:(}0.001{txt:)}}                   {txt}
+
+{txt}gender      {res}       -0.063***                       -0.065***                       -0.064***                {txt}
+            {res} {ralign 12:{txt:(}0.012{txt:)}}                    {ralign 12:{txt:(}0.012{txt:)}}                    {ralign 12:{txt:(}0.012{txt:)}}                   {txt}
+
+{txt}2012.year   {res}                        0.000                           0.000                           0.000   {txt}
+            {res}                 {ralign 12:{txt:(}.{txt:)}}                    {ralign 12:{txt:(}.{txt:)}}                    {ralign 12:{txt:(}.{txt:)}}   {txt}
+
+{txt}2014.year   {res}                        0.881***                        0.875***                        0.881***{txt}
+            {res}                 {ralign 12:{txt:(}0.085{txt:)}}                    {ralign 12:{txt:(}0.079{txt:)}}                    {ralign 12:{txt:(}0.083{txt:)}}   {txt}
+
+{txt}2016.year   {res}                        0.052                           0.052                           0.052   {txt}
+            {res}                 {ralign 12:{txt:(}0.038{txt:)}}                    {ralign 12:{txt:(}0.038{txt:)}}                    {ralign 12:{txt:(}0.038{txt:)}}   {txt}
+
+{txt}2018.year   {res}                        0.557***                        0.556***                        0.557***{txt}
+            {res}                 {ralign 12:{txt:(}0.043{txt:)}}                    {ralign 12:{txt:(}0.041{txt:)}}                    {ralign 12:{txt:(}0.042{txt:)}}   {txt}
+
+{txt}2020.year   {res}                        0.000                           0.000                           0.000   {txt}
+            {res}                 {ralign 12:{txt:(}.{txt:)}}                    {ralign 12:{txt:(}.{txt:)}}                    {ralign 12:{txt:(}.{txt:)}}   {txt}
+
+{txt}0.is_b40#c~P{res}                                       -0.113***       -0.718***                                {txt}
+            {res}                                 {ralign 12:{txt:(}0.010{txt:)}}    {ralign 12:{txt:(}0.058{txt:)}}                                   {txt}
+
+{txt}1.is_b40#c~P{res}                                       -0.229***       -0.881***                                {txt}
+            {res}                                 {ralign 12:{txt:(}0.018{txt:)}}    {ralign 12:{txt:(}0.057{txt:)}}                                   {txt}
+
+{txt}0.is_u20#c~P{res}                                                                       -0.164***       -0.799***{txt}
+            {res}                                                                 {ralign 12:{txt:(}0.013{txt:)}}    {ralign 12:{txt:(}0.059{txt:)}}   {txt}
+
+{txt}1.is_u20#c~P{res}                                                                       -0.136***       -0.745***{txt}
+            {res}                                                                 {ralign 12:{txt:(}0.012{txt:)}}    {ralign 12:{txt:(}0.062{txt:)}}   {txt}
+
+{txt}_cons       {res}        0.912***        0.260***        0.887***        0.260***        0.909***        0.260***{txt}
+            {res} {ralign 12:{txt:(}0.036{txt:)}}    {ralign 12:{txt:(}0.020{txt:)}}    {ralign 12:{txt:(}0.039{txt:)}}    {ralign 12:{txt:(}0.018{txt:)}}    {ralign 12:{txt:(}0.037{txt:)}}    {ralign 12:{txt:(}0.020{txt:)}}   {txt}
+{txt}{hline 108}
+{txt}N           {res}        15980           15980           15980           15980           15980           15980   {txt}
+{txt}R-sq        {res}        0.111           0.099           0.113           0.104           0.111           0.100   {txt}
+{txt}adj. R-sq   {res}        0.110           0.099           0.112           0.103           0.110           0.099   {txt}
+{txt}{hline 108}
+{txt}Standard errors in parentheses
+{txt}* p<0.1, ** p<0.05, *** p<0.01
+
+{com}. 
+.   cd "$Logout"
+{res}Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Logout
+{txt}
+{com}.   esttab   a1 a2   b1 b2  c1 c2   using "表4.csv"  ,   ///  
+>       mtitle(  mg_ctrl mg_yfe   lowg_ctrl lowg_yfe   upg_ctrl upg_yfe )    ///  
+>        b(%9.3f) se(%9.3f)  r2 ar2 star(* 0.1 ** 0.05 *** 0.01) replace 
+{res}{txt}(output written to {browse  `"表4.csv"'})
+
+{com}.    
+.  
+. ************************************************************************
+. * 四 利率冲击对劳动收入的异质性影响
+. *（二）稳健性分析 图5
+. ************************************************************************ 
+. 
+. 
+.     *稳健检验1：时间固定效应
+.     xtset idind year
+{res}
+{col 1}{txt:Panel variable: }{res:idind}{txt: (unbalanced)}
+{p 1 16 2}{txt:Time variable: }{res:year}{txt:, }{res:{bind:2012}}{txt: to }{res:{bind:2020}}{txt:, but with gaps}{p_end}
+{txt}{col 10}Delta: {res}1 unit
+{txt}
+{com}.     reghdfe g_inc_wag i.pctile#c.MP ,  absorb(pctile year)  
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 4 iterations)
+{res}{txt}note: 10.pctile#c.MP omitted because of collinearity
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 2 HDFE groups{col 51}F({res}   9{txt},{res}  15957{txt}){col 67}= {res}     17.42
+{txt}{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.1080
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.1068
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0097
+{txt}{col 51}Root MSE{col 67}= {res}    0.6870
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   g_inc_wag{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}pctile#c.MP {c |}
+{space 9} 1  {c |}{col 14}{res}{space 2} .0658499{col 26}{space 2}  .047211{col 37}{space 1}    1.39{col 46}{space 3}0.163{col 54}{space 4}-.0266889{col 67}{space 3} .1583888
+{txt}{space 9} 2  {c |}{col 14}{res}{space 2}-.1939453{col 26}{space 2} .0380365{col 37}{space 1}   -5.10{col 46}{space 3}0.000{col 54}{space 4} -.268501{col 67}{space 3}-.1193895
+{txt}{space 9} 3  {c |}{col 14}{res}{space 2}-.2258385{col 26}{space 2} .0384203{col 37}{space 1}   -5.88{col 46}{space 3}0.000{col 54}{space 4}-.3011466{col 67}{space 3}-.1505303
+{txt}{space 9} 4  {c |}{col 14}{res}{space 2}  .011529{col 26}{space 2} .0392942{col 37}{space 1}    0.29{col 46}{space 3}0.769{col 54}{space 4} -.065492{col 67}{space 3}   .08855
+{txt}{space 9} 5  {c |}{col 14}{res}{space 2} .0807567{col 26}{space 2} .0373281{col 37}{space 1}    2.16{col 46}{space 3}0.031{col 54}{space 4} .0075894{col 67}{space 3} .1539239
+{txt}{space 9} 6  {c |}{col 14}{res}{space 2} .0677521{col 26}{space 2} .0423063{col 37}{space 1}    1.60{col 46}{space 3}0.109{col 54}{space 4} -.015173{col 67}{space 3} .1506773
+{txt}{space 9} 7  {c |}{col 14}{res}{space 2} .0696466{col 26}{space 2} .0369471{col 37}{space 1}    1.89{col 46}{space 3}0.059{col 54}{space 4}-.0027738{col 67}{space 3}  .142067
+{txt}{space 9} 8  {c |}{col 14}{res}{space 2} .0712492{col 26}{space 2} .0411435{col 37}{space 1}    1.73{col 46}{space 3}0.083{col 54}{space 4}-.0093968{col 67}{space 3} .1518952
+{txt}{space 9} 9  {c |}{col 14}{res}{space 2} .0231457{col 26}{space 2} .0373567{col 37}{space 1}    0.62{col 46}{space 3}0.536{col 54}{space 4}-.0500776{col 67}{space 3}  .096369
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .2540138{col 26}{space 2} .0121967{col 37}{space 1}   20.83{col 46}{space 3}0.000{col 54}{space 4} .2301069{col 67}{space 3} .2779208
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}        year{col 14}{c |}{space 1}        5{col 27}{space 1}        1{col 39}{result}{space 1}        4{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.  
+.      // 提取估计系数  
+.     qui matrix b = e(b)   
+{txt}
+{com}.     // 提取协方差矩阵  
+.     qui matrix V = e(V)   
+{txt}
+{com}.     qui matrix se = V  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.     qui matrix se = diag(se)  
+{txt}
+{com}.     mat se[10,10] = 1 
+{txt}
+{com}.     qui matrix se = cholesky(se)  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.  
+. 
+.     qui matrix se = se' 
+{txt}
+{com}.     mat list se
+{res}
+{txt}se[11,1]
+                 r1
+1b.pctile#
+    c.MP {res} .04721098
+{txt}2.pctile#
+    c.MP {res} .03803646
+{txt}3.pctile#
+    c.MP {res}  .0384203
+{txt}4.pctile#
+    c.MP {res} .03929417
+{txt}5.pctile#
+    c.MP {res} .03732807
+{txt}6.pctile#
+    c.MP {res} .04230633
+{txt}7.pctile#
+    c.MP {res} .03694707
+{txt}8.pctile#
+    c.MP {res} .04114354
+{txt}9.pctile#
+    c.MP {res} .03735667
+{txt}10o.pctile#
+   co.MP {res}         1
+{txt}   _cons {res} .01219673
+{reset}
+{com}.     qui matrix b = b' 
+{txt}
+{com}.     mat list b
+{res}
+{txt}b[11,1]
+                  y1
+1b.pctile#
+    c.MP {res}  .06584992
+{txt}2.pctile#
+    c.MP {res} -.19394526
+{txt}3.pctile#
+    c.MP {res} -.22583845
+{txt}4.pctile#
+    c.MP {res}  .01152904
+{txt}5.pctile#
+    c.MP {res}  .08075666
+{txt}6.pctile#
+    c.MP {res}  .06775214
+{txt}7.pctile#
+    c.MP {res}   .0696466
+{txt}8.pctile#
+    c.MP {res}  .07124919
+{txt}9.pctile#
+    c.MP {res}   .0231457
+{txt}10o.pctile#
+   co.MP {res}          0
+{txt}   _cons {res}  .25401384
+{reset}
+{com}.     mat A = (b,se)
+{txt}
+{com}.     preserve 
+{txt}
+{com}.         clear 
+{txt}
+{com}.         svmat A 
+{txt}number of observations will be reset to 11
+Press any key to continue, or Break to abort
+{p}
+Number of observations ({bf:_N}) was 0,
+now 11.
+{p_end}
+
+{com}.         rename A1 beta
+{res}{txt}
+{com}.         rename A2 se
+{res}{txt}
+{com}. 
+.         local z = 2.56
+{txt}
+{com}.         gen lower = beta + (-`z') * se  
+{txt}
+{com}.         gen upper = beta + `z' * se  
+{txt}
+{com}.         gen qtile = _n * 10
+{txt}
+{com}.         drop if qtile >100
+{txt}(1 observation deleted)
+
+{com}. 
+. 
+.     twoway (line  lower qtile if qtile < 100 ,lc(gray) lp("-") lw(*0.8))  ///   
+>            (line  beta qtile  if qtile < 100,lc(blcak) lp("l") lw(*1.5))  ///   
+>            (line  upper qtile if qtile < 100,lc(gray) lp("-") lw(*0.8))  , ///   
+>             yline(0, lw(*0.5) lp("l") lc(gray) )   ///  
+>            xlabel( 10(20)90   ,labsize(*1) nogrid tposition(inside) )  /// 
+>            ylabel( -0.5 -0.25 0 0.25 0.5     ,labsize(*1) nogrid tposition(inside) )  /// 
+>             title(`"{c -(}fontface "宋体":稳健检验1：时间固定效应{c )-}"')    ///  
+>             ytitle("")  xtitle(`"{c -(}fontface "宋体":收入分位点{c )-}"')     legend(off)   
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}.     graph save    $Plot\plot稳健1.gph ,replace 
+{txt}{p 0 4 2}
+(file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\plot稳健1.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\plot稳健1.gph} saved
+
+{com}.     graph export  $Plot\plot稳健1.png ,replace 
+{txt}{p 0 4 2}
+(file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\\Plot\plot稳健1.png{rm}
+not found)
+{p_end}
+{p 0 4 2}
+file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\\Plot\plot稳健1.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}.     restore  
+{txt}
+{com}.  
+.     *稳健检验2：个人特征
+.     xtset idind year
+{res}
+{col 1}{txt:Panel variable: }{res:idind}{txt: (unbalanced)}
+{p 1 16 2}{txt:Time variable: }{res:year}{txt:, }{res:{bind:2012}}{txt: to }{res:{bind:2020}}{txt:, but with gaps}{p_end}
+{txt}{col 10}Delta: {res}1 unit
+{txt}
+{com}.     reghdfe g_inc_wag i.pctile#c.MP  age eduy gender  ,absorb(pctile  ) cluster(prov )   
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,980
+{txt}Absorbing 1 HDFE group{col 51}F({res}  13{txt},{res}     25{txt}){col 67}= {res}    313.69
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.1160
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.1147
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0531
+{txt}{col 1}Number of clusters ({res}prov{txt}) {col 30}= {res}        26{txt}{col 51}Root MSE{col 67}= {res}    0.6839
+
+{txt}{ralign 78:(Std. err. adjusted for {res:26} clusters in {res:prov})}
+{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 14}{c |}{col 26}    Robust
+{col 1}   g_inc_wag{col 14}{c |} Coefficient{col 26}  std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}pctile#c.MP {c |}
+{space 9} 1  {c |}{col 14}{res}{space 2}-.0542347{col 26}{space 2} .0243993{col 37}{space 1}   -2.22{col 46}{space 3}0.036{col 54}{space 4}-.1044859{col 67}{space 3}-.0039835
+{txt}{space 9} 2  {c |}{col 14}{res}{space 2}-.2910425{col 26}{space 2} .0223864{col 37}{space 1}  -13.00{col 46}{space 3}0.000{col 54}{space 4}-.3371482{col 67}{space 3}-.2449369
+{txt}{space 9} 3  {c |}{col 14}{res}{space 2}-.3242634{col 26}{space 2} .0265107{col 37}{space 1}  -12.23{col 46}{space 3}0.000{col 54}{space 4}-.3788632{col 67}{space 3}-.2696637
+{txt}{space 9} 4  {c |}{col 14}{res}{space 2}-.1531242{col 26}{space 2} .0361054{col 37}{space 1}   -4.24{col 46}{space 3}0.000{col 54}{space 4}-.2274847{col 67}{space 3}-.0787637
+{txt}{space 9} 5  {c |}{col 14}{res}{space 2}-.0860876{col 26}{space 2} .0241668{col 37}{space 1}   -3.56{col 46}{space 3}0.002{col 54}{space 4}-.1358599{col 67}{space 3}-.0363152
+{txt}{space 9} 6  {c |}{col 14}{res}{space 2}-.0803579{col 26}{space 2} .0244889{col 37}{space 1}   -3.28{col 46}{space 3}0.003{col 54}{space 4}-.1307937{col 67}{space 3} -.029922
+{txt}{space 9} 7  {c |}{col 14}{res}{space 2}-.1017907{col 26}{space 2} .0145121{col 37}{space 1}   -7.01{col 46}{space 3}0.000{col 54}{space 4}-.1316789{col 67}{space 3}-.0719026
+{txt}{space 9} 8  {c |}{col 14}{res}{space 2}-.0885624{col 26}{space 2} .0245441{col 37}{space 1}   -3.61{col 46}{space 3}0.001{col 54}{space 4} -.139112{col 67}{space 3}-.0380128
+{txt}{space 9} 9  {c |}{col 14}{res}{space 2}-.1458295{col 26}{space 2} .0165372{col 37}{space 1}   -8.82{col 46}{space 3}0.000{col 54}{space 4}-.1798885{col 67}{space 3}-.1117705
+{txt}{space 9}10  {c |}{col 14}{res}{space 2}-.1608457{col 26}{space 2}  .023855{col 37}{space 1}   -6.74{col 46}{space 3}0.000{col 54}{space 4} -.209976{col 67}{space 3}-.1117154
+{txt}{space 12} {c |}
+{space 9}age {c |}{col 14}{res}{space 2}-.0080802{col 26}{space 2} .0007081{col 37}{space 1}  -11.41{col 46}{space 3}0.000{col 54}{space 4}-.0095386{col 67}{space 3}-.0066218
+{txt}{space 8}eduy {c |}{col 14}{res}{space 2}  -.01728{col 26}{space 2} .0013599{col 37}{space 1}  -12.71{col 46}{space 3}0.000{col 54}{space 4}-.0200808{col 67}{space 3}-.0144792
+{txt}{space 6}gender {c |}{col 14}{res}{space 2}-.0657215{col 26}{space 2} .0119422{col 37}{space 1}   -5.50{col 46}{space 3}0.000{col 54}{space 4} -.090317{col 67}{space 3} -.041126
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .8722595{col 26}{space 2} .0409687{col 37}{space 1}   21.29{col 46}{space 3}0.000{col 54}{space 4} .7878829{col 67}{space 3} .9566362
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      pctile{col 14}{c |}{space 1}       10{col 27}{space 1}        0{col 39}{result}{space 1}       10{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.  
+.      // 提取估计系数  
+.     qui matrix b = e(b)   
+{txt}
+{com}.     // 提取协方差矩阵  
+.     qui matrix V = e(V)   
+{txt}
+{com}.     qui matrix se = V  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.     qui matrix se = diag(se)  
+{txt}
+{com}.     qui matrix se = cholesky(se)  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.  
+. 
+.     qui matrix se = se' 
+{txt}
+{com}.     mat list se
+{res}
+{txt}se[14,1]
+                r1
+1b.pctile#
+   c.MP {res} .02439926
+{txt}2.pctile#
+   c.MP {res} .02238639
+{txt}3.pctile#
+   c.MP {res} .02651067
+{txt}4.pctile#
+   c.MP {res} .03610541
+{txt}5.pctile#
+   c.MP {res} .02416675
+{txt}6.pctile#
+   c.MP {res} .02448891
+{txt}7.pctile#
+   c.MP {res} .01451208
+{txt}8.pctile#
+   c.MP {res} .02454414
+{txt}9.pctile#
+   c.MP {res}  .0165372
+{txt}10.pctile#
+   c.MP {res}   .023855
+{txt}    age {res} .00070811
+{txt}   eduy {res} .00135992
+{txt} gender {res} .01194222
+{txt}  _cons {res} .04096871
+{reset}
+{com}.     qui matrix b = b' 
+{txt}
+{com}.     mat list b
+{res}
+{txt}b[14,1]
+                 y1
+1b.pctile#
+   c.MP {res} -.05423473
+{txt}2.pctile#
+   c.MP {res} -.29104252
+{txt}3.pctile#
+   c.MP {res} -.32426343
+{txt}4.pctile#
+   c.MP {res} -.15312419
+{txt}5.pctile#
+   c.MP {res} -.08608756
+{txt}6.pctile#
+   c.MP {res} -.08035789
+{txt}7.pctile#
+   c.MP {res} -.10179075
+{txt}8.pctile#
+   c.MP {res} -.08856237
+{txt}9.pctile#
+   c.MP {res} -.14582946
+{txt}10.pctile#
+   c.MP {res} -.16084572
+{txt}    age {res} -.00808022
+{txt}   eduy {res} -.01728003
+{txt} gender {res} -.06572149
+{txt}  _cons {res}  .87225952
+{reset}
+{com}.     mat A = (b,se)
+{txt}
+{com}.     preserve 
+{txt}
+{com}.         clear 
+{txt}
+{com}.         svmat A 
+{txt}number of observations will be reset to 14
+Press any key to continue, or Break to abort
+{p}
+Number of observations ({bf:_N}) was 0,
+now 14.
+{p_end}
+
+{com}.         rename A1 beta
+{res}{txt}
+{com}.         rename A2 se
+{res}{txt}
+{com}. 
+.         local z = 2.56
+{txt}
+{com}.         gen lower = beta + (-`z') * se  
+{txt}
+{com}.         gen upper = beta + `z' * se  
+{txt}
+{com}.         gen qtile = _n * 10
+{txt}
+{com}.         drop if qtile >100
+{txt}(4 observations deleted)
+
+{com}.  
+. 
+.     twoway (line  lower qtile ,lc(gray) lp("-") lw(*0.8))  ///   
+>            (line  beta qtile ,lc(blcak) lp("l") lw(*1.5))  ///   
+>            (line  upper qtile ,lc(gray) lp("-") lw(*0.8))  , ///   
+>             yline(0, lw(*0.5) lp("l") lc(gray) )   ///  
+>            xlabel( 10(20)100   ,labsize(*1) nogrid tposition(inside) )  /// 
+>            ylabel( -0.5 -0.25 0 0.25 0.5     ,labsize(*1) nogrid tposition(inside) )  /// 
+>             title(`"{c -(}fontface "宋体":稳健检验2：控制个人特征{c )-}"')    ///  
+>             ytitle("")  xtitle(`"{c -(}fontface "宋体":收入分位点{c )-}"')     legend(off)  
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}.     graph save    $Plot\plot稳健2.gph ,replace 
+{txt}{p 0 4 2}
+(file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\plot稳健2.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\plot稳健2.gph} saved
+
+{com}.     graph export  $Plot\plot稳健2.png ,replace 
+{txt}{p 0 4 2}
+(file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\\Plot\plot稳健2.png{rm}
+not found)
+{p_end}
+{p 0 4 2}
+file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\\Plot\plot稳健2.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}.     restore  
+{txt}
+{com}.   
+. 
+. 
+. 
+. 
+.     cd  $Plot   
+{res}Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot
+{txt}
+{com}.     graph combine  plot稳健1.gph plot稳健2.gph
+{res}{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{res}{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}.     
+.     graph save    $Plot\图5.gph ,replace 
+{res}{txt}file {bf:Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\图5.gph} saved
+
+{com}.     graph export  $Plot\图5.png ,replace 
+{txt}{p 0 4 2}
+file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\\Plot\图5.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+.     erase plot稳健1.gph
+{txt}
+{com}.     erase plot稳健2.gph
+{txt}
+{com}.     erase plot稳健1.png
+{txt}
+{com}.     erase plot稳健2.png
+{txt}
+{com}. 
+. 
+.  
+. ************************************************************************
+. * 四 利率冲击对劳动收入的异质性影响
+. *（二）稳健性分析 表5
+. ************************************************************************ 
+. 
+.     rifhdreg inc_wag       MP age eduy gender        , rif(gini) abs(idind) 
+
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    10,788
+{txt}Absorbing 1 HDFE group{col 51}F({res}   4{txt},{res}   6329{txt}){col 67}= {res}     16.17
+{txt}{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.6380
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.3830
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0101
+{txt}{col 51}Root MSE{col 67}= {res}    0.3140
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}     inc_wag{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}MP {c |}{col 14}{res}{space 2} .0326318{col 26}{space 2} .0051229{col 37}{space 1}    6.37{col 46}{space 3}0.000{col 54}{space 4} .0225892{col 67}{space 3} .0426743
+{txt}{space 9}age {c |}{col 14}{res}{space 2} .0054211{col 26}{space 2} .0013413{col 37}{space 1}    4.04{col 46}{space 3}0.000{col 54}{space 4} .0027917{col 67}{space 3} .0080504
+{txt}{space 8}eduy {c |}{col 14}{res}{space 2} .0001858{col 26}{space 2} .0023434{col 37}{space 1}    0.08{col 46}{space 3}0.937{col 54}{space 4} -.004408{col 67}{space 3} .0047797
+{txt}{space 6}gender {c |}{col 14}{res}{space 2} .1673385{col 26}{space 2} .1359669{col 37}{space 1}    1.23{col 46}{space 3}0.218{col 54}{space 4}-.0992026{col 67}{space 3} .4338797
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2} .0975975{col 26}{space 2} .0966218{col 37}{space 1}    1.01{col 46}{space 3}0.312{col 54}{space 4} -.091814{col 67}{space 3} .2870089
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}       idind{col 14}{c |}{space 1}     4455{col 27}{space 1}        0{col 39}{result}{space 1}     4455{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}Distributional Statistic: gini
+Sample Mean    RIF gini :  .45163
+{txt}
+{com}.     rifhdreg ln_inc_wag    MP age eduy gender        , rif(gini) abs(idind)
+
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    10,788
+{txt}Absorbing 1 HDFE group{col 51}F({res}   4{txt},{res}   6329{txt}){col 67}= {res}    112.19
+{txt}{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.5631
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.2553
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0662
+{txt}{col 51}Root MSE{col 67}= {res}    0.0548
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}  ln_inc_wag{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 10}MP {c |}{col 14}{res}{space 2} .0178465{col 26}{space 2} .0008934{col 37}{space 1}   19.98{col 46}{space 3}0.000{col 54}{space 4} .0160951{col 67}{space 3} .0195979
+{txt}{space 9}age {c |}{col 14}{res}{space 2} .0012079{col 26}{space 2} .0002339{col 37}{space 1}    5.16{col 46}{space 3}0.000{col 54}{space 4} .0007494{col 67}{space 3} .0016665
+{txt}{space 8}eduy {c |}{col 14}{res}{space 2}-.0003746{col 26}{space 2} .0004087{col 37}{space 1}   -0.92{col 46}{space 3}0.359{col 54}{space 4}-.0011758{col 67}{space 3} .0004265
+{txt}{space 6}gender {c |}{col 14}{res}{space 2} .0207686{col 26}{space 2} .0237122{col 37}{space 1}    0.88{col 46}{space 3}0.381{col 54}{space 4}-.0257154{col 67}{space 3} .0672525
+{txt}{space 7}_cons {c |}{col 14}{res}{space 2}-.0110539{col 26}{space 2} .0168505{col 37}{space 1}   -0.66{col 46}{space 3}0.512{col 54}{space 4}-.0440867{col 67}{space 3} .0219788
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}       idind{col 14}{c |}{space 1}     4455{col 27}{space 1}        0{col 39}{result}{space 1}     4455{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}Distributional Statistic: gini
+Sample Mean    RIF gini :  .06065
+{txt}
+{com}. 
+.  
+. ************************************************************************
+. * 四 利率冲击对劳动收入的异质性影响
+. *（二）稳健性分析 图6
+. ************************************************************************ 
+. 
+. 
+.     mat A = J(9,3,0)
+{txt}
+{com}.     local i = 1 
+{txt}
+{com}. 
+.     foreach num of numlist   10(10)90  {c -(}
+{txt}  2{com}.         qui rifhdreg ln_inc_wag       MP age eduy gender        , rif(q(`num')) abs(idind)
+{txt}  3{com}.         // 提取估计系数  
+.         qui matrix b = e(b)   
+{txt}  4{com}.         // 提取协方差矩阵  
+.         qui matrix V = e(V)   
+{txt}  5{com}.         qui matrix se = V  
+{txt}  6{com}.         qui matrix se = vecdiag(se)  
+{txt}  7{com}.         qui matrix se = diag(se)  
+{txt}  8{com}.         qui matrix se = cholesky(se)  
+{txt}  9{com}.         qui matrix se = vecdiag(se)  
+{txt} 10{com}.      
+. 
+.         qui matrix se = se'   
+{txt} 11{com}.         mat list se
+{txt} 12{com}.         qui matrix b = b'  
+{txt} 13{com}.         mat list b
+{txt} 14{com}.         mat A[`i',1] = b[1,1]
+{txt} 15{com}.         mat A[`i',2] = se[1,1]
+{txt} 16{com}.         mat A[`i',3] = `num'
+{txt} 17{com}.         local i = `i' + 1
+{txt} 18{com}.     {c )-}
+{res}
+{txt}se[5,1]
+               r1
+    MP {res}  .0687076
+{txt}   age {res} .01798895
+{txt}  eduy {res} .03142933
+{txt}gender {res} 1.8235782
+{txt} _cons {res} 1.2958848
+{reset}{res}
+{txt}b[5,1]
+                y1
+    MP {res} -1.7362059
+{txt}   age {res} -.03649911
+{txt}  eduy {res}  .04133009
+{txt}gender {res} -1.3823389
+{txt} _cons {res}  11.344671
+{reset}{res}
+{txt}se[5,1]
+               r1
+    MP {res} .02967251
+{txt}   age {res} .00776883
+{txt}  eduy {res} .01357328
+{txt}gender {res} .78754236
+{txt} _cons {res} .55964923
+{reset}{res}
+{txt}b[5,1]
+                y1
+    MP {res} -.47719418
+{txt}   age {res}  .02617603
+{txt}  eduy {res}  .04195384
+{txt}gender {res} -1.6449671
+{txt} _cons {res}  9.1265076
+{reset}{res}
+{txt}se[5,1]
+               r1
+    MP {res} .01595844
+{txt}   age {res} .00417822
+{txt}  eduy {res} .00729997
+{txt}gender {res} .42355535
+{txt} _cons {res} .30099007
+{reset}{res}
+{txt}b[5,1]
+                y1
+    MP {res} -.10806526
+{txt}   age {res}  .03480251
+{txt}  eduy {res}   .0171157
+{txt}gender {res} -1.1325821
+{txt} _cons {res}  8.9040319
+{reset}{res}
+{txt}se[5,1]
+               r1
+    MP {res} .01320149
+{txt}   age {res}  .0034564
+{txt}  eduy {res} .00603884
+{txt}gender {res} .35038259
+{txt} _cons {res} .24899149
+{reset}{res}
+{txt}b[5,1]
+                y1
+    MP {res} -.07228402
+{txt}   age {res}  .05658757
+{txt}  eduy {res}  .01204938
+{txt}gender {res} -.74979846
+{txt} _cons {res}  7.9924842
+{reset}{res}
+{txt}se[5,1]
+               r1
+    MP {res} .01168552
+{txt}   age {res} .00305949
+{txt}  eduy {res} .00534538
+{txt}gender {res} .31014698
+{txt} _cons {res} .22039896
+{reset}{res}
+{txt}b[5,1]
+                y1
+    MP {res} -.04760613
+{txt}   age {res}  .05109753
+{txt}  eduy {res}  .00731858
+{txt}gender {res} -.49865239
+{txt} _cons {res}  8.3223798
+{reset}{res}
+{txt}se[5,1]
+               r1
+    MP {res} .01135916
+{txt}   age {res} .00297404
+{txt}  eduy {res} .00519609
+{txt}gender {res}  .3014851
+{txt} _cons {res} .21424359
+{reset}{res}
+{txt}b[5,1]
+                y1
+    MP {res} -.05442417
+{txt}   age {res}  .06700514
+{txt}  eduy {res}  .00301119
+{txt}gender {res} -.47096551
+{txt} _cons {res}  7.8656028
+{reset}{res}
+{txt}se[5,1]
+               r1
+    MP {res}  .0113905
+{txt}   age {res} .00298225
+{txt}  eduy {res} .00521043
+{txt}gender {res} .30231701
+{txt} _cons {res} .21483477
+{reset}{res}
+{txt}b[5,1]
+                y1
+    MP {res} -.12114162
+{txt}   age {res}  .07022596
+{txt}  eduy {res}   .0072437
+{txt}gender {res} -.04473264
+{txt} _cons {res}  7.6473127
+{reset}{res}
+{txt}se[5,1]
+               r1
+    MP {res} .01193748
+{txt}   age {res} .00312546
+{txt}  eduy {res} .00546063
+{txt}gender {res} .31683442
+{txt} _cons {res} .22515124
+{reset}{res}
+{txt}b[5,1]
+                y1
+    MP {res} -.12077416
+{txt}   age {res}  .07213028
+{txt}  eduy {res}  .01189959
+{txt}gender {res}  -.3912609
+{txt} _cons {res}  7.9407332
+{reset}{res}
+{txt}se[5,1]
+               r1
+    MP {res} .01652014
+{txt}   age {res} .00432529
+{txt}  eduy {res} .00755691
+{txt}gender {res} .43846345
+{txt} _cons {res} .31158417
+{reset}{res}
+{txt}b[5,1]
+                y1
+    MP {res} -.11951774
+{txt}   age {res}   .0767114
+{txt}  eduy {res}  .01672784
+{txt}gender {res} -.47171491
+{txt} _cons {res}  8.0645824
+{reset}
+{com}.     mat list A  
+{res}
+{txt}A[9,3]
+            c1          c2          c3
+r1 {res} -1.7362059    .0687076          10
+{txt}r2 {res} -.47719418   .02967251          20
+{txt}r3 {res} -.10806526   .01595844          30
+{txt}r4 {res} -.07228402   .01320149          40
+{txt}r5 {res} -.04760613   .01168552          50
+{txt}r6 {res} -.05442417   .01135916          60
+{txt}r7 {res} -.12114162    .0113905          70
+{txt}r8 {res} -.12077416   .01193748          80
+{txt}r9 {res} -.11951774   .01652014          90
+{reset}
+{com}. 
+.     preserve 
+{txt}
+{com}.         clear 
+{txt}
+{com}.         svmat A 
+{txt}number of observations will be reset to 9
+Press any key to continue, or Break to abort
+{p}
+Number of observations ({bf:_N}) was 0,
+now 9.
+{p_end}
+
+{com}. 
+.         rename A1 beta
+{res}{txt}
+{com}.         rename A2 se
+{res}{txt}
+{com}.         rename A3 qtile
+{res}{txt}
+{com}. 
+.         local z = 2.56
+{txt}
+{com}.         gen lower = beta + (-`z') * se  
+{txt}
+{com}.         gen upper = beta + `z' * se  
+{txt}
+{com}. 
+. 
+.   
+.         twoway (line  lower qtile ,lc(gray) lp("-") lw(*0.8))  ///   
+>                (line  beta  qtile ,lc(blcak) lp("l") lw(*1.5))  ///   
+>                (line  upper qtile ,lc(gray) lp("-") lw(*0.8))  , ///   
+>                 yline(0, lw(*0.5) lp("l") lc(gray) )   ///  
+>                xlabel( 10(20)100              ,labsize(*1) nogrid tposition(inside) )  /// 
+>                ylabel(  ,labsize(*1) nogrid tposition(inside) )  /// 
+>                 title("")    ///  
+>                 ytitle("")  xtitle(`"{c -(}fontface "宋体":收入分位点{c )-}"')     legend(off)  
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{p 0 4 2}
+{txt}(note:  named style
+blcak not found in class
+color,  default attributes used)
+{p_end}
+{res}{txt}
+{com}. 
+.         graph save    $Plot\图6.gph ,replace 
+{res}{txt}file {bf:Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\图6.gph} saved
+
+{com}.         graph export  $Plot\图6.png ,replace       
+{txt}{p 0 4 2}
+file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\\Plot\图6.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+. 
+.     restore  
+{txt}
+{com}.  
+.     cd  $MainPath 
+{res}Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案
+{txt}
+{com}. 
+{txt}end of do-file
+
+{com}.     do 04-图7图8.do
+{txt}
+{com}.  
+.  
+. 
+. ************************************************************************
+. * 五 利率冲击对劳动收入差距的影响机制
+. *（一）劳动供给侧的证据  图7+图8
+. ************************************************************************ 
+.     use $Data\cfps_LABOREco.dta,clear  
+{txt}
+{com}.     xtset idind year  
+{res}
+{col 1}{txt:Panel variable: }{res:idind}{txt: (unbalanced)}
+{p 1 16 2}{txt:Time variable: }{res:year}{txt:, }{res:{bind:2012}}{txt: to }{res:{bind:2020}}{txt:, but with gaps}{p_end}
+{txt}{col 10}Delta: {res}1 unit
+{txt}
+{com}. 
+.   
+.     /*  2020-投入产出表 计算排序
+>     农业  0.000776231            农、林、牧、渔业
+>     社保  0.17309773             公共管理和社会组织 
+>     卫生  0.174935149            卫生、社会保障和社会福利业
+>     居民服务    0.188120119       居民服务和其他服务业
+>     商务服务    0.206481302       租赁和商务服务业
+>     教育    0.24549583           教育
+>     文娱  0.344029217            文化、体育和娱乐业
+>     建筑  0.34779887              建筑业
+>     科技  0.355106514             科学研究、技术服务和地质勘查业
+>     住宿餐饮    0.415428972       住宿和餐饮业 
+>     批发零售    0.454917532       批发和零售业 
+>     仓储运输邮政  0.495322735      交通运输、仓储和邮政业
+>     水环境管理   0.499025505       水利、环境和公共设施管理业
+>     信息软件    0.538019947       信息传播、计算机服务和软件业
+>     制造  0.643651031             制造业
+>     采矿  0.657121755             采矿业
+>     水电燃气供应  0.700934721      电力、燃气及水的生产和供应业
+>     金融  0.742538457             金融业
+>     房地产 0.749589125            房地产业   
+>     */
+. 
+.     cap drop alphaK 
+{txt}
+{com}.     gen  alphaK = . 
+{txt}(15,980 missing values generated)
+
+{com}.     replace alphaK = 1 if  indusname =="农、林、牧、渔业" | indusname =="公共管理和社会组织" | indusname =="卫生、社会保障和社会福利业"| indusname =="居民服务和其他服务业"  
+{txt}(2,156 real changes made)
+
+{com}.     replace alphaK = 2 if  indusname =="租赁和商务服务业" | indusname =="教育" | indusname =="文化、体育和娱乐业"| indusname =="建筑业"  
+{txt}(2,649 real changes made)
+
+{com}.     replace alphaK = 3 if  indusname =="科学研究、技术服务和地质勘查业" | indusname =="住宿和餐饮业" | indusname =="批发和零售业"| indusname =="交通运输、仓储和邮政业"  
+{txt}(3,096 real changes made)
+
+{com}.     replace alphaK = 4 if  indusname =="水利、环境和公共设施管理业" | indusname =="信息传播、计算机服务和软件业" | indusname =="制造业"| indusname =="采矿业"  
+{txt}(4,573 real changes made)
+
+{com}.     replace alphaK = 5 if  indusname =="电力、燃气及水的生产和供应业" | indusname =="金融业" | indusname =="房地产业"  
+{txt}(1,076 real changes made)
+
+{com}. 
+.      
+.     reghdfe g_inc_wag    i.alphaK#c.MP  ,  absorb( alphaK  )  
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    13,550
+{txt}Absorbing 1 HDFE group{col 51}F({res}   5{txt},{res}  13540{txt}){col 67}= {res}     16.49
+{txt}{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.0065
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.0059
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0061
+{txt}{col 51}Root MSE{col 67}= {res}    0.7129
+
+{txt}{hline 13}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}   g_inc_wag{col 14}{c |} Coefficient{col 26}  Std. err.{col 38}      t{col 46}   P>|t|{col 54}     [95% con{col 67}f. interval]
+{hline 13}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 1}alphaK#c.MP {c |}
+{space 10}1  {c |}{col 14}{res}{space 2}-.1011123{col 26}{space 2} .0255718{col 37}{space 1}   -3.95{col 46}{space 3}0.000{col 54}{space 4}-.1512367{col 67}{space 3} -.050988
+{txt}{space 10}2  {c |}{col 14}{res}{space 2}-.0668677{col 26}{space 2} .0233067{col 37}{space 1}   -2.87{col 46}{space 3}0.004{col 54}{space 4} -.112552{col 67}{space 3}-.0211834
+{txt}{space 10}3  {c |}{col 14}{res}{space 2}-.0594765{col 26}{space 2} .0216011{col 37}{space 1}   -2.75{col 46}{space 3}0.006{col 54}{space 4}-.1018177{col 67}{space 3}-.0171353
+{txt}{space 10}4  {c |}{col 14}{res}{space 2} -.096333{col 26}{space 2} .0173779{col 37}{space 1}   -5.54{col 46}{space 3}0.000{col 54}{space 4}-.1303962{col 67}{space 3}-.0622699
+{txt}{space 10}5  {c |}{col 14}{res}{space 2}-.1670931{col 26}{space 2} .0370946{col 37}{space 1}   -4.50{col 46}{space 3}0.000{col 54}{space 4}-.2398037{col 67}{space 3}-.0943824
+{txt}{space 12} {c |}
+{space 7}_cons {c |}{col 14}{res}{space 2} .3141647{col 26}{space 2} .0072755{col 37}{space 1}   43.18{col 46}{space 3}0.000{col 54}{space 4} .2999036{col 67}{space 3} .3284258
+{txt}{hline 13}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      alphaK{col 14}{c |}{space 1}        5{col 27}{space 1}        0{col 39}{result}{space 1}        5{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.      
+. 
+.      // 提取估计系数  
+.     qui matrix b = e(b)   
+{txt}
+{com}.     // 提取协方差矩阵  
+.     qui matrix V = e(V)   
+{txt}
+{com}.     qui matrix se = V  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.     qui matrix se = diag(se)  
+{txt}
+{com}.     qui matrix se = cholesky(se)  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.  
+. 
+.     qui matrix se = se' 
+{txt}
+{com}.     mat list se
+{res}
+{txt}se[6,1]
+                r1
+1b.alphaK#
+   c.MP {res} .02557185
+{txt}2.alphaK#
+   c.MP {res} .02330666
+{txt}3.alphaK#
+   c.MP {res} .02160112
+{txt}4.alphaK#
+   c.MP {res} .01737794
+{txt}5.alphaK#
+   c.MP {res} .03709464
+{txt}  _cons {res} .00727555
+{reset}
+{com}.     qui matrix b = b' 
+{txt}
+{com}.     mat list b
+{res}
+{txt}b[6,1]
+                 y1
+1b.alphaK#
+   c.MP {res} -.10111235
+{txt}2.alphaK#
+   c.MP {res} -.06686771
+{txt}3.alphaK#
+   c.MP {res} -.05947647
+{txt}4.alphaK#
+   c.MP {res} -.09633305
+{txt}5.alphaK#
+   c.MP {res} -.16709306
+{txt}  _cons {res}  .31416468
+{reset}
+{com}.     mat A = (b,se)
+{txt}
+{com}.     preserve 
+{txt}
+{com}.  
+.         clear 
+{txt}
+{com}.         svmat A 
+{txt}number of observations will be reset to 6
+Press any key to continue, or Break to abort
+{p}
+Number of observations ({bf:_N}) was 0,
+now 6.
+{p_end}
+
+{com}.         rename A1 beta
+{res}{txt}
+{com}.         rename A2 se 
+{res}{txt}
+{com}.         local z = 2.54
+{txt}
+{com}.         gen lower99 = beta + (-`z') * se  
+{txt}
+{com}.         gen upper99 = beta + `z' * se  
+{txt}
+{com}.         local z = 1.96
+{txt}
+{com}.         gen lower95 = beta + (-`z') * se  
+{txt}
+{com}.         gen upper95 = beta + `z' * se  
+{txt}
+{com}. 
+.         gen qtile = _n  
+{txt}
+{com}.         drop if qtile >5 
+{txt}(1 observation deleted)
+
+{com}.  
+.         replace qtile = 1.1 if qtile == 1
+{txt}(1 real change made)
+
+{com}.         replace qtile = 4.9 if qtile == 5
+{txt}(1 real change made)
+
+{com}.         twoway  (rcap upper99 lower99 qtile ,lc(black) lp("l") lw(*1))   ///   
+>                 (rbar upper95 lower95 qtile ,barwidth(.1)  color(gs10) lw(*0.05))  ,     ///   
+>                 yline(0, lw(*0.5) lp("l") lc(gray) )   ///  
+>                 xlabel( 1 2 3 4 5 ,labsize(*1) nogrid tposition(inside) )  /// 
+>                 ylabel(  -0.3 "-0.3" -0.15 "-0.15" 0 "0" 0.15 "0.15" 0.3 "0.3" ,labsize(*1) nogrid tposition(inside) )  /// 
+>                 title(`"{c -(}fontface "宋体":利率对工资性收入增长率的影响{c )-}"')    ///  
+>                 ytitle("") xtitle(`"{c -(}fontface "宋体":行业资本密集度{c )-}"')   ///
+>                 legend(order(1 `"99%{c -(}fontface "宋体":置信区间{c )-}"' 2 `"95%{c -(}fontface "宋体":置信区间{c )-}"'  ) col(2) pos(6) )  
+{res}{txt}
+{com}.         graph save    $Plot\劳动供给侧_1.gph ,replace 
+{txt}{p 0 4 2}
+(file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\劳动供给侧_1.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\劳动供给侧_1.gph} saved
+
+{com}.         *graph export  $Plot\劳动供给侧_1.png ,replace  
+.  
+.     restore   
+{txt}
+{com}.   
+. 
+.    *教育
+.     reghdfe g_inc_wag    i.edulevel#c.MP ,   absorb( edulevel  )  
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    15,844
+{txt}Absorbing 1 HDFE group{col 51}F({res}   5{txt},{res}  15834{txt}){col 67}= {res}     73.34
+{txt}{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.0236
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.0230
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0226
+{txt}{col 51}Root MSE{col 67}= {res}    0.7201
+
+{txt}{hline 14}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}    g_inc_wag{col 15}{c |} Coefficient{col 27}  Std. err.{col 39}      t{col 47}   P>|t|{col 55}     [95% con{col 68}f. interval]
+{hline 14}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+edulevel#c.MP {c |}
+{space 11}1  {c |}{col 15}{res}{space 2}-.2275641{col 27}{space 2} .0194528{col 38}{space 1}  -11.70{col 47}{space 3}0.000{col 55}{space 4}-.2656938{col 68}{space 3}-.1894344
+{txt}{space 11}2  {c |}{col 15}{res}{space 2}-.2087293{col 27}{space 2} .0166183{col 38}{space 1}  -12.56{col 47}{space 3}0.000{col 55}{space 4}-.2413031{col 68}{space 3}-.1761555
+{txt}{space 11}3  {c |}{col 15}{res}{space 2}-.1388389{col 27}{space 2} .0187666{col 38}{space 1}   -7.40{col 47}{space 3}0.000{col 55}{space 4}-.1756236{col 68}{space 3}-.1020543
+{txt}{space 11}4  {c |}{col 15}{res}{space 2} -.103799{col 27}{space 2}   .02532{col 38}{space 1}   -4.10{col 47}{space 3}0.000{col 55}{space 4}-.1534291{col 68}{space 3}-.0541689
+{txt}{space 11}5  {c |}{col 15}{res}{space 2}-.0217421{col 27}{space 2} .0295916{col 38}{space 1}   -0.73{col 47}{space 3}0.463{col 55}{space 4}-.0797449{col 68}{space 3} .0362607
+{txt}{space 13} {c |}
+{space 8}_cons {c |}{col 15}{res}{space 2} .3172664{col 27}{space 2} .0069169{col 38}{space 1}   45.87{col 47}{space 3}0.000{col 55}{space 4} .3037084{col 68}{space 3} .3308243
+{txt}{hline 14}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}    edulevel{col 14}{c |}{space 1}        5{col 27}{space 1}        0{col 39}{result}{space 1}        5{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.      
+.   
+. 
+.      // 提取估计系数  
+.     qui matrix b = e(b)   
+{txt}
+{com}.     // 提取协方差矩阵  
+.     qui matrix V = e(V)   
+{txt}
+{com}.     qui matrix se = V  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.     qui matrix se = diag(se)  
+{txt}
+{com}.     qui matrix se = cholesky(se)  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.  
+. 
+.     qui matrix se = se' 
+{txt}
+{com}.     mat list se
+{res}
+{txt}se[6,1]
+                  r1
+1b.edulevel#
+     c.MP {res} .01945281
+{txt}2.edulevel#
+     c.MP {res} .01661832
+{txt}3.edulevel#
+     c.MP {res} .01876657
+{txt}4.edulevel#
+     c.MP {res} .02532002
+{txt}5.edulevel#
+     c.MP {res} .02959155
+{txt}    _cons {res}  .0069169
+{reset}
+{com}.     qui matrix b = b' 
+{txt}
+{com}.     mat list b
+{res}
+{txt}b[6,1]
+                   y1
+1b.edulevel#
+     c.MP {res} -.22756409
+{txt}2.edulevel#
+     c.MP {res} -.20872927
+{txt}3.edulevel#
+     c.MP {res} -.13883894
+{txt}4.edulevel#
+     c.MP {res} -.10379899
+{txt}5.edulevel#
+     c.MP {res} -.02174209
+{txt}    _cons {res}  .31726635
+{reset}
+{com}.     mat A = (b,se)
+{txt}
+{com}.     preserve  
+{txt}
+{com}.         clear 
+{txt}
+{com}.         svmat A 
+{txt}number of observations will be reset to 6
+Press any key to continue, or Break to abort
+{p}
+Number of observations ({bf:_N}) was 0,
+now 6.
+{p_end}
+
+{com}.         rename A1 beta
+{res}{txt}
+{com}.         rename A2 se 
+{res}{txt}
+{com}.         local z = 2.54
+{txt}
+{com}.         gen lower99 = beta + (-`z') * se  
+{txt}
+{com}.         gen upper99 = beta + `z' * se  
+{txt}
+{com}.         local z = 1.96
+{txt}
+{com}.         gen lower95 = beta + (-`z') * se  
+{txt}
+{com}.         gen upper95 = beta + `z' * se  
+{txt}
+{com}. 
+.         gen qtile = _n  
+{txt}
+{com}.         drop if qtile >5 
+{txt}(1 observation deleted)
+
+{com}.  
+.         replace qtile = 1.1 if qtile == 1
+{txt}(1 real change made)
+
+{com}.         replace qtile = 4.9 if qtile == 5
+{txt}(1 real change made)
+
+{com}.         twoway  (rcap  upper99 lower99 qtile ,lc(black) lp("l") lw(*1))   ///   
+>                 (rbar  upper95 lower95 qtile ,barwidth(.1) color(gray) lw(*0.05))  ,     ///   
+>                 yline(0, lw(*0.5) lp("l") lc(gray) )   ///  
+>                 xlabel( 1 2 3 4 5   ,labsize(*1)   nogrid tposition(inside)   )  /// 
+>                 ylabel(  -0.3 "-0.3" -0.15 "-0.15" 0 "0" 0.15 "0.15" 0.3 "0.3"  ,labsize(*1) nogrid tposition(inside)  )  /// 
+>                 title(`"{c -(}fontface "宋体":利率对工资性收入增长率的影响{c )-}"')    ///  
+>                 ytitle("") xtitle(`"{c -(}fontface "宋体":受教育程度{c )-}"')   ///
+>                 legend(order(1 `"99%{c -(}fontface "宋体":置信区间{c )-}"' 2 `"95%{c -(}fontface "宋体":置信区间{c )-}"'  ) col(2) pos(6) )  
+{res}{txt}
+{com}.         graph save    $Plot\劳动供给侧_2.gph ,replace 
+{txt}{p 0 4 2}
+(file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\劳动供给侧_2.gph{rm}
+not found)
+{p_end}
+{res}{txt}file {bf:Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\劳动供给侧_2.gph} saved
+
+{com}.         *graph export  $Plot\劳动供给侧_2.png ,replace 
+.     restore  
+{txt}
+{com}. 
+.     cd $Plot
+{res}Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot
+{txt}
+{com}.     grc1leg  劳动供给侧_1.gph 劳动供给侧_2.gph,col(2) legendfrom(劳动供给侧_1.gph)
+{res}{txt}
+{com}.     graph save    $Plot\图7.gph ,replace 
+{res}{txt}file {bf:Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\图7.gph} saved
+
+{com}.     graph export  $Plot\图7.png ,replace  
+{txt}{p 0 4 2}
+file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\\Plot\图7.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}. 
+.     erase $Plot\劳动供给侧_1.gph 
+{txt}
+{com}.     erase $Plot\劳动供给侧_2.gph 
+{txt}
+{com}.  
+.     ********************
+.     *    *交乘
+.     ********************
+.     gen eduLev2 = . 
+{txt}(15,980 missing values generated)
+
+{com}.     replace eduLev2 = 0 if edulevel >= 1 & edulevel<=3
+{txt}(11,429 real changes made)
+
+{com}.     replace eduLev2 = 1 if edulevel >= 4 & edulevel<=5
+{txt}(4,415 real changes made)
+
+{com}. 
+.     reghdfe g_inc_wag    i.eduLev2#i.alphaK#c.MP    ,  absorb( edulevel  )  
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}    13,423
+{txt}Absorbing 1 HDFE group{col 51}F({res}  10{txt},{res}  13408{txt}){col 67}= {res}      9.12
+{txt}{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.0073
+{txt}{col 51}Adj R-squared{col 67}= {res}    0.0063
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0068
+{txt}{col 51}Root MSE{col 67}= {res}    0.7144
+
+{txt}{hline 20}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 1}          g_inc_wag{col 21}{c |} Coefficient{col 33}  Std. err.{col 45}      t{col 53}   P>|t|{col 61}     [95% con{col 74}f. interval]
+{hline 20}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+eduLev2#alphaK#c.MP {c |}
+{space 15}0 1  {c |}{col 21}{res}{space 2}-.1680392{col 33}{space 2} .0292029{col 44}{space 1}   -5.75{col 53}{space 3}0.000{col 61}{space 4}-.2252811{col 74}{space 3}-.1107973
+{txt}{space 15}0 2  {c |}{col 21}{res}{space 2}-.0820853{col 33}{space 2} .0253067{col 44}{space 1}   -3.24{col 53}{space 3}0.001{col 61}{space 4}  -.13169{col 74}{space 3}-.0324807
+{txt}{space 15}0 3  {c |}{col 21}{res}{space 2}-.0790997{col 33}{space 2} .0215408{col 44}{space 1}   -3.67{col 53}{space 3}0.000{col 61}{space 4}-.1213226{col 74}{space 3}-.0368767
+{txt}{space 15}0 4  {c |}{col 21}{res}{space 2}-.1023771{col 33}{space 2} .0175462{col 44}{space 1}   -5.83{col 53}{space 3}0.000{col 61}{space 4}-.1367702{col 74}{space 3}-.0679841
+{txt}{space 15}0 5  {c |}{col 21}{res}{space 2}-.1373842{col 33}{space 2} .0408358{col 44}{space 1}   -3.36{col 53}{space 3}0.001{col 61}{space 4}-.2174282{col 74}{space 3}-.0573403
+{txt}{space 15}1 1  {c |}{col 21}{res}{space 2}-.0617524{col 33}{space 2} .0353338{col 44}{space 1}   -1.75{col 53}{space 3}0.081{col 61}{space 4}-.1310116{col 74}{space 3} .0075067
+{txt}{space 15}1 2  {c |}{col 21}{res}{space 2} -.046206{col 33}{space 2} .0345849{col 44}{space 1}   -1.34{col 53}{space 3}0.182{col 61}{space 4}-.1139973{col 74}{space 3} .0215853
+{txt}{space 15}1 3  {c |}{col 21}{res}{space 2}-.0081211{col 33}{space 2} .0422793{col 44}{space 1}   -0.19{col 53}{space 3}0.848{col 61}{space 4}-.0909944{col 74}{space 3} .0747523
+{txt}{space 15}1 4  {c |}{col 21}{res}{space 2}-.0335159{col 33}{space 2} .0353927{col 44}{space 1}   -0.95{col 53}{space 3}0.344{col 61}{space 4}-.1028907{col 74}{space 3} .0358588
+{txt}{space 15}1 5  {c |}{col 21}{res}{space 2} -.115718{col 33}{space 2} .0488277{col 44}{space 1}   -2.37{col 53}{space 3}0.018{col 61}{space 4}-.2114272{col 74}{space 3}-.0200088
+{txt}{space 19} {c |}
+{space 14}_cons {c |}{col 21}{res}{space 2} .3141663{col 33}{space 2} .0073557{col 44}{space 1}   42.71{col 53}{space 3}0.000{col 61}{space 4} .2997481{col 74}{space 3} .3285844
+{txt}{hline 20}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}    edulevel{col 14}{c |}{space 1}        5{col 27}{space 1}        0{col 39}{result}{space 1}        5{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.      
+. 
+. 
+. 
+.      // 提取估计系数  
+.     qui matrix b = e(b)   
+{txt}
+{com}.     // 提取协方差矩阵  
+.     qui matrix V = e(V)   
+{txt}
+{com}.     qui matrix se = V  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.     qui matrix se = diag(se)  
+{txt}
+{com}.     qui matrix se = cholesky(se)  
+{txt}
+{com}.     qui matrix se = vecdiag(se)  
+{txt}
+{com}.  
+. 
+.     qui matrix se = se' 
+{txt}
+{com}.     mat list se
+{res}
+{txt}se[11,1]
+                 r1
+0b.eduLev2#
+1b.alphaK#
+    c.MP {res} .02920294
+{txt}0b.eduLev2#
+2.alphaK#
+    c.MP {res} .02530669
+{txt}0b.eduLev2#
+3.alphaK#
+    c.MP {res} .02154075
+{txt}0b.eduLev2#
+4.alphaK#
+    c.MP {res} .01754622
+{txt}0b.eduLev2#
+5.alphaK#
+    c.MP {res} .04083582
+{txt}1.eduLev2#
+1b.alphaK#
+    c.MP {res} .03533377
+{txt}1.eduLev2#
+2.alphaK#
+    c.MP {res}  .0345849
+{txt}1.eduLev2#
+3.alphaK#
+    c.MP {res} .04227928
+{txt}1.eduLev2#
+4.alphaK#
+    c.MP {res} .03539275
+{txt}1.eduLev2#
+5.alphaK#
+    c.MP {res} .04882771
+{txt}   _cons {res} .00735567
+{reset}
+{com}.     qui matrix b = b' 
+{txt}
+{com}.     mat list b
+{res}
+{txt}b[11,1]
+                  y1
+0b.eduLev2#
+1b.alphaK#
+    c.MP {res}  -.1680392
+{txt}0b.eduLev2#
+2.alphaK#
+    c.MP {res} -.08208534
+{txt}0b.eduLev2#
+3.alphaK#
+    c.MP {res} -.07909965
+{txt}0b.eduLev2#
+4.alphaK#
+    c.MP {res} -.10237713
+{txt}0b.eduLev2#
+5.alphaK#
+    c.MP {res} -.13738424
+{txt}1.eduLev2#
+1b.alphaK#
+    c.MP {res} -.06175242
+{txt}1.eduLev2#
+2.alphaK#
+    c.MP {res} -.04620601
+{txt}1.eduLev2#
+3.alphaK#
+    c.MP {res} -.00812107
+{txt}1.eduLev2#
+4.alphaK#
+    c.MP {res} -.03351592
+{txt}1.eduLev2#
+5.alphaK#
+    c.MP {res} -.11571797
+{txt}   _cons {res}  .31416627
+{reset}
+{com}.     mat A = (b,se)
+{txt}
+{com}.     preserve  
+{txt}
+{com}.         clear 
+{txt}
+{com}.         svmat A 
+{txt}number of observations will be reset to 11
+Press any key to continue, or Break to abort
+{p}
+Number of observations ({bf:_N}) was 0,
+now 11.
+{p_end}
+
+{com}.         rename A1 beta
+{res}{txt}
+{com}.         rename A2 se 
+{res}{txt}
+{com}.         local z = 2.54
+{txt}
+{com}.         gen lower99 = beta + (-`z') * se  
+{txt}
+{com}.         gen upper99 = beta + `z' * se  
+{txt}
+{com}.         local z = 1.96
+{txt}
+{com}.         gen lower95 = beta + (-`z') * se  
+{txt}
+{com}.         gen upper95 = beta + `z' * se  
+{txt}
+{com}. 
+.         gen qtile = _n  
+{txt}
+{com}.         drop if qtile >10
+{txt}(1 observation deleted)
+
+{com}. 
+.         gen gr = 2 
+{txt}
+{com}.         replace gr = 1 if _n <=5
+{txt}(5 real changes made)
+
+{com}.         replace  qtile = qtile - 4.85 if gr ==2    //调整位置，保证美观，否则太挤
+{txt}(5 real changes made)
+
+{com}.         replace  qtile = qtile - 0.15 if gr ==1    //调整位置，保证美观，否则太挤
+{txt}(5 real changes made)
+
+{com}. 
+.         twoway  (rcap  upper99 lower99 qtile if gr == 1, lp("l") lc(black) lp("l") lw(*1))   ///   
+>                 (rbar  upper95 lower95 qtile if gr == 1, lp("l") barwidth(.16) color(gs10) lw(*1) lc(black))  ///   
+>                 (rcap  upper99 lower99 qtile if gr == 2, lp("l")  lc(gray) lp("l") lw(*1))   ///   
+>                 (rbar  upper95 lower95 qtile if gr == 2, lp("l") barwidth(.16) color(white) lw(*1) lc(black))  ,     ///   
+>                 yline(0, lw(*0.5) lp("l") lc(gray) )   ///  
+>                 xlabel(1 2 3 4 5   ,labsize(*1)  nogrid tposition(inside)   )  /// 
+>                 ylabel(  -0.2 "-0.2" -0.1 "-0.1" 0 "0" 0.1 "0.1" 0.2 "0.2"  ,labsize(*1)  nogrid tposition(inside)   )  /// 
+>                 title(`"{c -(}fontface "宋体":利率对工资性收入增长率的影响{c )-}"')    ///  
+>                 ytitle("") xtitle(`"{c -(}fontface "宋体":行业资本密集度{c )-}"')   ///
+>                 legend(order(1 `"99%{c -(}fontface "宋体":置信区间{c )-}"' 2 `"{c -(}fontface "宋体":低技能劳动(95%置信区间){c )-}"'  ///  
+>                              4 `"{c -(}fontface "宋体":高技能劳动(95%置信区间){c )-}"' ) col(3) pos(6) ) 
+{res}{txt}
+{com}.         graph save    $Plot\图8.gph ,replace 
+{res}{txt}file {bf:Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\Plot\图8.gph} saved
+
+{com}.         graph export  $Plot\图8.png ,replace   
+{txt}{p 0 4 2}
+file {bf}
+Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\\Plot\图8.png{rm}
+saved as
+PNG
+format
+{p_end}
+
+{com}.     restore  
+{txt}
+{com}. 
+. 
+.     cd  $MainPath 
+{res}Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案
+{txt}
+{com}. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+{txt}end of do-file
+
+{com}.     do 05-表6.do 
+{txt}
+{com}.  
+. 
+. ************************************************************************
+. * 五 利率冲击对劳动收入差距的影响机制
+. *（二）劳动需求侧的证据  表6
+. ************************************************************************ 
+. *表6 
+. 
+.     use $Data\上市公司.dta ,clear   
+{txt}
+{com}. 
+.     reghdfe wagg_Ledu mp_down asinh_asset asinh_age asinh_emp asinh_人均gdp_city 第二产业增加值占GDP比重_city   , absorb(Lfid) cluster(indus) 
+{res}{txt}(dropped 314 {browse "http://scorreia.com/research/singletons.pdf":singleton observations})
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res}     2,771
+{txt}Absorbing 1 HDFE group{col 51}F({res}   6{txt},{res}     59{txt}){col 67}= {res}      9.33
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.2692
+{txt}{col 51}Adj R-squared{col 67}= {res}   -0.0308
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0572
+{txt}{col 1}Number of clusters ({res}indus{txt}) {col 30}= {res}        60{txt}{col 51}Root MSE{col 67}= {res}    0.8081
+
+{txt}{ralign 94:(Std. err. adjusted for {res:60} clusters in {res:indus})}
+{hline 29}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 30}{c |}{col 42}    Robust
+{col 1}                   wagg_Ledu{col 30}{c |} Coefficient{col 42}  std. err.{col 54}      t{col 62}   P>|t|{col 70}     [95% con{col 83}f. interval]
+{hline 29}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 21}mp_down {c |}{col 30}{res}{space 2} -.179844{col 42}{space 2} .0668689{col 53}{space 1}   -2.69{col 62}{space 3}0.009{col 70}{space 4}-.3136484{col 83}{space 3}-.0460397
+{txt}{space 17}asinh_asset {c |}{col 30}{res}{space 2} .0820022{col 42}{space 2} .1548498{col 53}{space 1}    0.53{col 62}{space 3}0.598{col 70}{space 4}-.2278515{col 83}{space 3} .3918558
+{txt}{space 19}asinh_age {c |}{col 30}{res}{space 2} 1.738688{col 42}{space 2} .4798562{col 53}{space 1}    3.62{col 62}{space 3}0.001{col 70}{space 4} .7784977{col 83}{space 3} 2.698878
+{txt}{space 19}asinh_emp {c |}{col 30}{res}{space 2} .1703172{col 42}{space 2} .1716534{col 53}{space 1}    0.99{col 62}{space 3}0.325{col 70}{space 4}-.1731605{col 83}{space 3} .5137949
+{txt}{space 10}asinh_人均gdp_city {c |}{col 30}{res}{space 2} .7336083{col 42}{space 2} .2906798{col 53}{space 1}    2.52{col 62}{space 3}0.014{col 70}{space 4} .1519594{col 83}{space 3} 1.315257
+{txt}第二产业增加值占GDP比重_city {c |}{col 30}{res}{space 2} .0222447{col 42}{space 2} .0127925{col 53}{space 1}    1.74{col 62}{space 3}0.087{col 70}{space 4}-.0033531{col 83}{space 3} .0478425
+{txt}{space 23}_cons {c |}{col 30}{res}{space 2}-19.36799{col 42}{space 2} 5.087464{col 53}{space 1}   -3.81{col 62}{space 3}0.000{col 70}{space 4}-29.54798{col 83}{space 3}-9.187994
+{txt}{hline 29}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}        Lfid{col 14}{c |}{space 1}      801{col 27}{space 1}        0{col 39}{result}{space 1}      801{col 53}{text} {col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+{res}{txt}
+{com}.  
+.     use $Data\税调.dta ,clear    
+{txt}
+{com}. 
+.     reghdfe wagg   mp_down   lnasset_begin  lnemp_begin lnage lngdpa 第二产业增加值占GDP比重   , absorb(firmID)  clu(indus_4d2#city)  
+{res}{txt}(dropped 70456 {browse "http://scorreia.com/research/singletons.pdf":singleton observations})
+{res}{txt}({browse "http://scorreia.com/research/hdfe.pdf":MWFE estimator} converged in 1 iterations)
+{res}
+{txt}HDFE Linear regression{col 51}Number of obs{col 67}= {res} 2,272,840
+{txt}Absorbing 1 HDFE group{col 51}F({res}   6{txt},{res}  18685{txt}){col 67}= {res}   1129.86
+{txt}Statistics robust to heteroskedasticity{col 51}Prob > F{col 67}= {res}    0.0000
+{txt}{col 51}R-squared{col 67}= {res}    0.2405
+{txt}{col 51}Adj R-squared{col 67}= {res}   -0.0695
+{txt}{col 51}Within R-sq.{col 67}= {res}    0.0484
+{txt}{col 1}Number of clusters ({res}indus_4d2#city{txt}) {col 30}= {res}    18,686{txt}{col 51}Root MSE{col 67}= {res}    0.8121
+
+{txt}{ralign 89:(Std. err. adjusted for {res:18,686} clusters in {res:indus_4d2#city})}
+{hline 24}{c TT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{col 25}{c |}{col 37}    Robust
+{col 1}                   wagg{col 25}{c |} Coefficient{col 37}  std. err.{col 49}      t{col 57}   P>|t|{col 65}     [95% con{col 78}f. interval]
+{hline 24}{c +}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{space 16}mp_down {c |}{col 25}{res}{space 2}  -.00781{col 37}{space 2} .0046035{col 48}{space 1}   -1.70{col 57}{space 3}0.090{col 65}{space 4}-.0168333{col 78}{space 3} .0012133
+{txt}{space 10}lnasset_begin {c |}{col 25}{res}{space 2} .0549431{col 37}{space 2} .0021462{col 48}{space 1}   25.60{col 57}{space 3}0.000{col 65}{space 4} .0507364{col 78}{space 3} .0591499
+{txt}{space 12}lnemp_begin {c |}{col 25}{res}{space 2}-.5351528{col 37}{space 2} .0081959{col 48}{space 1}  -65.29{col 57}{space 3}0.000{col 65}{space 4}-.5512176{col 78}{space 3} -.519088
+{txt}{space 18}lnage {c |}{col 25}{res}{space 2} -.316191{col 37}{space 2} .0141067{col 48}{space 1}  -22.41{col 57}{space 3}0.000{col 65}{space 4}-.3438414{col 78}{space 3}-.2885407
+{txt}{space 17}lngdpa {c |}{col 25}{res}{space 2}-.0569324{col 37}{space 2} .0094943{col 48}{space 1}   -6.00{col 57}{space 3}0.000{col 65}{space 4} -.075542{col 78}{space 3}-.0383227
+{txt}第二产业增加值占GDP比重 {c |}{col 25}{res}{space 2}-.0038761{col 37}{space 2}  .000977{col 48}{space 1}   -3.97{col 57}{space 3}0.000{col 65}{space 4}-.0057912{col 78}{space 3}-.0019611
+{txt}{space 18}_cons {c |}{col 25}{res}{space 2}  3.29687{col 37}{space 2} .1457505{col 48}{space 1}   22.62{col 57}{space 3}0.000{col 65}{space 4} 3.011186{col 78}{space 3} 3.582554
+{txt}{hline 24}{c BT}{hline 11}{hline 11}{hline 9}{hline 8}{hline 13}{hline 12}
+{res}
+{txt}Absorbed degrees of freedom:
+{res}{col 1}{text}{hline 13}{c TT}{hline 12}{hline 12}{hline 14}{hline 1}{c TRC}
+{col 1}{text} Absorbed FE{col 14}{c |} Categories{col 27} - Redundant{col 39}  = Num. Coefs{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c +}{hline 12}{hline 12}{hline 14}{hline 1}{c RT}
+{col 1}{text}      firmID{col 14}{c |}{space 1}   658797{col 27}{space 1}   658797{col 39}{result}{space 1}        0{col 53}{text}*{col 54}{c |}
+{res}{col 1}{text}{hline 13}{c BT}{hline 12}{hline 12}{hline 14}{hline 1}{c BRC}
+* = FE nested within cluster; treated as redundant for DoF computation
+{res}{txt}
+{com}. 
+. 
+. 
+. 
+.     cd  $MainPath 
+{res}Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案
+{txt}
+{com}. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+.  
+. 
+{txt}end of do-file
+
+{com}.     log close 
+      {txt}name:  {res}<unnamed>
+       {txt}log:  {res}Z:\TEMP_Backup\Research\paper\货币政策\利率冲击_微观\货币政策_CFPS\RR\编辑部备案\2025-4141-闫里鹏.smcl
+  {txt}log type:  {res}smcl
+ {txt}closed on:  {res}28 Aug 2025, 11:01:58
+{txt}{.-}
+{smcl}
+{txt}{sf}{ul off}
