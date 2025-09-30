@@ -1,10 +1,10 @@
 # 利率冲击对城镇劳动收入差距的影响rep code
 
 2025.09.21 《劳动经济研究》论文实证分析部分程序  
-2025.09.30 中国货币政策构建程序（Stata + Matlab）  
-                 - stata程序中注明了步骤和所需数据  
-                 - Matlab程序（main.m）基于AEJ:Macro论文进行化简，原始程序参见文件夹中的README  
+2025.09.30  中国货币政策构建程序（Stata + Matlab）  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- stata程序中注明了步骤和所需数据  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Matlab程序（main.m）基于AEJ:Macro论文进行化简，原始程序参见文件夹中的README  
 
 后续更新计划  
-    - 更换利率数据来源，计算最新的外生利率冲击  
-    - 参考Tao Zha老师的论文，基于货币供给计算外生利率冲击  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 更换利率数据来源，计算最新的外生利率冲击  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- 参考Tao Zha老师的论文，基于货币供给计算外生利率冲击  
